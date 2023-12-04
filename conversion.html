@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Say Hello</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .muted-yellow-header {
+      background-color: #f8f87c;
+      text-align: center;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .content {
+      text-align: left; /* Align content to the left */
+      margin: 0 20px; /* Add some horizontal margin for better readability */
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Muted yellow header -->
+  <div class="muted-yellow-header">
+    <h1>WELCOME TO THE SAY HELLO PAGE</h1>
+  </div>
+
+  <div class="content">
+    <label for="fname">What Is Your name?</label>
+    <input id="fname" type="text">
+    <button onclick="sayhello()">Say Hello</button>
+    <br><br>
+    <h2 id="hellomsg"></h2>
+    <br>
+
+    <a href="index.html">Back To Homepage</a>
+  </div>
+
+  <script>
+    function sayhello() {
+      var uname;
+      uname = document.getElementById("fname").value;
+      document.getElementById("hellomsg").innerHTML = 'Hello ' + uname;
+    }
+  </script>
+
+</body>
+
+</html>
 
