@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Home Page</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .black-header {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Style for the navigation links */
+        .nav-link {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Style for the underline effect */
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 100%;
+        }
+
+        /* Style for the footer */
+        .footer {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="black-header">
+        <!-- Make each link clickable -->
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="sayhello.html" class="nav-link">SAY HELLO</a>
+        <a href="gradecomputation.html" class="nav-link">GRADE COMPUTATION</a>
+        <a href="conversion.html" class="nav-link">CONVERSION PROGRAM</a>
+        <a href="naturalnumberoperations.html" class="nav-link">NATURAL NUMBER OPERATIONS</a>
+        <a href="incometaxcalculator.html" class="nav-link">INCOME TAX CALCULATOR</a>
+        <a href="simplepayroll.html" class="nav-link">SIMPLE PAYROLL</a>
+    </div>
+
+    <h2>Welcome to The Home Page!</h2>
+    <p>This website is for the purpose of creating a website and also acts as a storage space for the assignments!</p>
+
+    <div class="footer">
+        Created By: Desiree S. Dagondon
+    </div>
+
+    <script src="scripts.js"></script>
+
+    <script>
+        // JavaScript to handle scrolling and updating the active link
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', function () {
+                let currentSection = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+
+                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').slice(1) === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
