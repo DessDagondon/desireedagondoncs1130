@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Say Hello</title>
+  <title>Unit Conversion</title>
   <style>
     body {
       margin: 0;
@@ -11,47 +11,90 @@
       font-family: Arial, sans-serif;
     }
 
-    .muted-yellow-header {
-      background-color: #f8f87c;
+    .red-header {
+      background-color: red;
+      color: white;
       text-align: center;
       padding: 10px;
-      margin-bottom: 20px;
-    }
-
-    .content {
-      text-align: left; /* Align content to the left */
-      margin: 0 20px; /* Add some horizontal margin for better readability */
     }
   </style>
+  <script>
+    function celsiusToFahrenheit(celsius) {
+      return (celsius * 9 / 5) + 32;
+    }
+
+    function fahrenheitToCelsius(fahrenheit) {
+      return (fahrenheit - 32) * 5 / 9;
+    }
+
+    function metersToFeet(meters) {
+      return meters * 3.28084;
+    }
+
+    function feetToMeters(feet) {
+      return feet / 3.28084;
+    }
+
+    function convertTemperature() {
+      var celsiusValue = parseFloat(document.getElementById("celsiusInput").value);
+      var fahrenheitValue = celsiusToFahrenheit(celsiusValue);
+      document.getElementById("resultTemperature").innerHTML = "Celsius to Fahrenheit: " + fahrenheitValue.toFixed(2) + " °F";
+    }
+
+    function convertTemperatureReverse() {
+      var fahrenheitValue = parseFloat(document.getElementById("fahrenheitInput").value);
+      var celsiusValue = fahrenheitToCelsius(fahrenheitValue);
+      document.getElementById("resultTemperatureReverse").innerHTML = "Fahrenheit to Celsius: " + celsiusValue.toFixed(2) + " °C";
+    }
+
+    function convertLength() {
+      var metersValue = parseFloat(document.getElementById("metersInput").value);
+      var feetValue = metersToFeet(metersValue);
+      document.getElementById("resultLength").innerHTML = "Meters to Feet: " + feetValue.toFixed(2) + " feet";
+    }
+
+    function convertLengthReverse() {
+      var feetValue = parseFloat(document.getElementById("feetInput").value);
+      var metersValue = feetToMeters(feetValue);
+      document.getElementById("resultLengthReverse").innerHTML = "Feet to Meters: " + metersValue.toFixed(2) + " meters";
+    }
+  </script>
 </head>
 
 <body>
 
-  <!-- Muted yellow header -->
-  <div class="muted-yellow-header">
-    <h1>WELCOME TO THE SAY HELLO PAGE</h1>
+  <!-- Red header -->
+  <div class="red-header">
+    <h1>Unit Conversion Page</h1>
   </div>
 
-  <div class="content">
-    <label for="fname">What Is Your name?</label>
-    <input id="fname" type="text">
-    <button onclick="sayhello()">Say Hello</button>
-    <br><br>
-    <h2 id="hellomsg"></h2>
-    <br>
+  <h2>Temperature Conversion</h2>
+  <label for="celsiusInput">Celsius:</label>
+  <input type="number" id="celsiusInput">
+  <button onclick="convertTemperature()">Convert</button>
+  <p id="resultTemperature"></p>
 
-    <a href="index.html">Back To Homepage</a>
-  </div>
+  <label for="fahrenheitInput">Fahrenheit:</label>
+  <input type="number" id="fahrenheitInput">
+  <button onclick="convertTemperatureReverse()">Convert</button>
+  <p id="resultTemperatureReverse"></p>
 
-  <script>
-    function sayhello() {
-      var uname;
-      uname = document.getElementById("fname").value;
-      document.getElementById("hellomsg").innerHTML = 'Hello ' + uname;
-    }
-  </script>
+  <h2>Length Conversion</h2>
+  <label for="metersInput">Meters:</label>
+  <input type="number" id="metersInput">
+  <button onclick="convertLength()">Convert</button>
+  <p id="resultLength"></p>
+
+  <label for="feetInput">Feet:</label>
+  <input type="number" id="feetInput">
+  <button onclick="convertLengthReverse()">Convert</button>
+  <p id="resultLengthReverse"></p>
+
+  <br>
+  <p>
+    <a href="index.html">Back to Home Page</a>
+  </p>
 
 </body>
 
 </html>
-
