@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Natural Numbers Operations</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .purple-header {
+      background-color: purple;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+  <script>
+    function calculateFactorial() {
+      var n = parseInt(document.getElementById("factorialInput").value);
+      var factorial = 1;
+      var i = 1;
+
+      while (i <= n) {
+        factorial *= i;
+        i++;
+      }
+
+      document.getElementById("resultFactorial").innerHTML = "Factorial: " + factorial;
+    }
+
+    function calculateSum() {
+      var n = parseInt(document.getElementById("sumInput").value);
+      var sum = 0;
+      var i = 1;
+
+      do {
+        sum += i;
+        i++;
+      } while (i <= n);
+
+      document.getElementById("resultSum").innerHTML = "Sum: " + sum;
+    }
+
+    function calculateAverage() {
+      var n = parseInt(document.getElementById("averageInput").value);
+      var sum = 0;
+
+      for (var i = 1; i <= n; i++) {
+        sum += i;
+      }
+
+      var average = sum / n;
+      document.getElementById("resultAverage").innerHTML = "Average: " + average.toFixed(2);
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- Purple header -->
+  <div class="purple-header">
+    <h1>Natural Numbers Operations Page</h1>
+  </div>
+
+  <h2>Natural Number Operations</h2>
+
+  <label for="factorialInput">Factorial - Enter N:</label>
+  <input type="number" id="factorialInput">
+  <button onclick="calculateFactorial()">Calculate Factorial</button>
+  <p id="resultFactorial"></p>
+
+  <label for="sumInput">Sum - Enter N:</label>
+  <input type="number" id="sumInput">
+  <button onclick="calculateSum()">Calculate Sum</button>
+  <p id="resultSum"></p>
+
+  <label for="averageInput">Average - Enter N:</label>
+  <input type="number" id="averageInput">
+  <button onclick="calculateAverage()">Calculate Average</button>
+  <p id="resultAverage"></p>
+
+  <br>
+  <p>
+    <a href="index.html">Back to Home Page</a>
+  </p>
+
+</body>
+
+</html>
+
