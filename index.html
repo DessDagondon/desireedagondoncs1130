@@ -19,7 +19,6 @@
             text-align: center;
         }
 
-        /* Style for the navigation links */
         .nav-link {
             margin: 0 10px;
             color: white;
@@ -28,7 +27,6 @@
             display: inline-block;
         }
 
-        /* Style for the underline effect */
         .nav-link::before {
             content: '';
             position: absolute;
@@ -45,7 +43,6 @@
             width: 100%;
         }
 
-        /* Style for the footer */
         .footer {
             background-color: black;
             color: white;
@@ -55,13 +52,37 @@
             bottom: 0;
             width: 100%;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
 
     <div class="black-header">
-        <!-- Make each link clickable -->
         <a href="index.html" class="nav-link">HOME</a>
         <a href="sayhello.html" class="nav-link">SAY HELLO</a>
         <a href="gradecomputation.html" class="nav-link">GRADE COMPUTATION</a>
@@ -74,6 +95,15 @@
     <h2>Welcome to The Home Page!</h2>
     <p>This website is for the purpose of creating a website and also acts as a storage space for the assignments!</p>
 
+    <button onclick="openModal()">Click Me</button>
+
+    <div id="myModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Welcome to my Personal Website, there isn't much here so go to the other options on the header if you'd like!</p>
+        </div>
+    </div>
+
     <div class="footer">
         Created By: Desiree S. Dagondon
     </div>
@@ -81,7 +111,6 @@
     <script src="scripts.js"></script>
 
     <script>
-        // JavaScript to handle scrolling and updating the active link
         document.addEventListener("DOMContentLoaded", function () {
             const sections = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-link');
@@ -106,6 +135,14 @@
                 });
             });
         });
+
+        function openModal() {
+            document.getElementById('myModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
     </script>
 
 </body>
