@@ -22,8 +22,8 @@
     function computegrade() {
       var x, y, z, lg, cm, cp;
 
-      x = document.getElementById("score").value * 1; // automatically converts to number
-      y = document.getElementById("items").value * 1; // to avoid a parseFloat
+      x = document.getElementById("score").value * 1; 
+      y = document.getElementById("items").value * 1;
       z = document.getElementById("base").value * 1;
 
       let g = Math.round((x / y) * (100 - z) + z);
