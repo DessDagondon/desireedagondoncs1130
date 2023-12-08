@@ -30,6 +30,14 @@
       border-radius: 5px;
       z-index: 1;
     }
+
+    /* Style for the close button */
+    .close {
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
   </style>
   <script>
     function celsiusToFahrenheit(celsius) {
@@ -74,7 +82,7 @@
 
     // Display the modal with the given message
     function displayModal(modalId, message) {
-      document.getElementById(modalId).innerHTML = message;
+      document.getElementById(modalId).innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
       document.getElementById(modalId).style.display = 'block';
     }
 
@@ -99,7 +107,7 @@
 
   <!-- Modal for displaying temperature conversion result -->
   <div id="resultTemperatureModal" class="modal">
-    <span onclick="closeModal('resultTemperatureModal')" style="cursor: pointer; position: absolute; top: 10px; right: 10px;">&times;</span>
+    <!-- Close button (X) is added dynamically -->
     <p id="resultTemperature"></p>
   </div>
 
@@ -109,7 +117,7 @@
 
   <!-- Modal for displaying reverse temperature conversion result -->
   <div id="resultTemperatureReverseModal" class="modal">
-    <span onclick="closeModal('resultTemperatureReverseModal')" style="cursor: pointer; position: absolute; top: 10px; right: 10px;">&times;</span>
+    <!-- Close button (X) is added dynamically -->
     <p id="resultTemperatureReverse"></p>
   </div>
 
@@ -120,7 +128,7 @@
 
   <!-- Modal for displaying length conversion result -->
   <div id="resultLengthModal" class="modal">
-    <span onclick="closeModal('resultLengthModal')" style="cursor: pointer; position: absolute; top: 10px; right: 10px;">&times;</span>
+    <!-- Close button (X) is added dynamically -->
     <p id="resultLength"></p>
   </div>
 
@@ -130,7 +138,7 @@
 
   <!-- Modal for displaying reverse length conversion result -->
   <div id="resultLengthReverseModal" class="modal">
-    <span onclick="closeModal('resultLengthReverseModal')" style="cursor: pointer; position: absolute; top: 10px; right: 10px;">&times;</span>
+    <!-- Close button (X) is added dynamically -->
     <p id="resultLengthReverse"></p>
   </div>
 
