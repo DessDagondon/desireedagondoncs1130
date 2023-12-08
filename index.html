@@ -1,164 +1,38 @@
-<!DOCTYPE html>
-<html>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-<head>
-    <meta charset="utf-8">
-    <title>Home Page</title>
+        window.addEventListener('scroll', function () {
+            let currentSection = '';
 
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
 
-        .black-header {
-            background-color: black;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
+                if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
 
-        .nav-link {
-            margin: 0 10px;
-            color: white;
-            text-decoration: none;
-            position: relative;
-            display: inline-block;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: white;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::before,
-        .nav-link.active::before {
-            width: 100%;
-        }
-
-        .footer {
-            background-color: black;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .modal {
-            display: none;
-        }
-
-        .modal-dialog {
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            margin: 20vh auto;
-            width: 60%;
-            max-width: 400px;
-            position: relative;
-        }
-
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
-
-        .program-buttons {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .program-buttons button {
-            margin: 10px;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="black-header">
-        <a href="index.html" class="nav-link">HOME</a>
-        <a href="sayhello.html" class="nav-link">SAY HELLO</a>
-        <a href="gradecomputation.html" class="nav-link">GRADE COMPUTATION</a>
-        <a href="conversion.html" class="nav-link">UNIT CONVERSION PROGRAM</a>
-        <a href="naturalnumberoperations.html" class="nav-link">NATURAL NUMBER OPERATIONS</a>
-        <a href="incometaxcalculator.html" class="nav-link">INCOME TAX CALCULATOR</a>
-        <a href="simplepayroll.html" class="nav-link">SIMPLE PAYROLL</a>
-    </div>
-
-    <h2>Welcome to The Home Page!</h2>
-    <p>This website is for the purpose of creating a website and also acts as a storage space for the assignments!</p>
-
-    <button onclick="openModal('myModal')">Click Me</button>
-
-    <dialog id="myModal" class="modal">
-        <div class="modal-dialog">
-            <span class="close" onclick="closeModal('myModal')">&times;</span>
-            <p>Welcome to my Personal Website, there isn't much here so go to the other options on the header if you'd like!</p>
-        </div>
-    </dialog>
-
-    <div class="program-buttons">
-        <button onclick="openModal('conversionInfo')">Learn about Unit Conversion</button>
-        <button onclick="openModal('naturalNumberInfo')">Learn about Natural Number Operations</button>
-        <button onclick="openModal('gradeInfo')">Learn about Grade Computation</button>
-        <button onclick="openModal('incomeTaxInfo')">Learn about Income Tax Calculator</button>
-        <button onclick="openModal('payrollInfo')">Learn about Simple Payroll</button>
-    </div>
-
-    <div class="footer">
-        Created By: Desiree S. Dagondon
-    </div>
-
-    <script src="scripts.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            window.addEventListener('scroll', function () {
-                let currentSection = '';
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-
-                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').slice(1) === currentSection) {
-                        link.classList.add('active');
-                    }
-                });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === currentSection) {
+                    link.classList.add('active');
+                }
             });
         });
+    });
 
-        function openModal(modalId) {
-            document.getElementById(modalId).showModal();
-        }
+    function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.showModal();
+    }
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).close();
-        }
-    </script>
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.close();
+    }
+</script>
 
-</body>
-
-</html>
 
