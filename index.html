@@ -1,38 +1,145 @@
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
+<!DOCTYPE html>
+<html>
 
-        window.addEventListener('scroll', function () {
-            let currentSection = '';
+<head>
+    <meta charset="utf-8">
+    <title>Home Page</title>
 
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
 
-                if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
+        .black-header {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === currentSection) {
-                    link.classList.add('active');
-                }
+        .nav-link {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 100%;
+        }
+
+        .footer {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .modal {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="black-header">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="sayhello.html" class="nav-link">SAY HELLO</a>
+        <a href="gradecomputation.html" class="nav-link">GRADE COMPUTATION</a>
+        <a href="conversion.html" class="nav-link">UNIT CONVERSION PROGRAM</a>
+        <a href="naturalnumberoperations.html" class="nav-link">NATURAL NUMBER OPERATIONS</a>
+        <a href="incometaxcalculator.html" class="nav-link">INCOME TAX CALCULATOR</a>
+        <a href="simplepayroll.html" class="nav-link">SIMPLE PAYROLL</a>
+    </div>
+
+    <h2>Welcome to The Home Page!</h2>
+    <p>This website is for the purpose of creating a website and also acts as a storage space for the assignments!</p>
+
+    <button onclick="openModal('welcomeModal')">Click Me</button>
+
+    <dialog id="welcomeModal" class="modal">
+        <div onclick="closeModal('welcomeModal')">
+            <span class="close" onclick="closeModal('welcomeModal')">&times;</span>
+            <p>Welcome to my Personal Website, there isn't much here so go to the other options on the header if you'd like!</p>
+        </div>
+    </dialog>
+
+    <dialog id="conversionInfoModal" class="modal">
+        <div onclick="closeModal('conversionInfoModal')">
+            <span class="close" onclick="closeModal('conversionInfoModal')">&times;</span>
+            <p>Information about Unit Conversion goes here.</p>
+        </div>
+    </dialog>
+
+    <dialog id="naturalNumberInfoModal" class="modal">
+        <div onclick="closeModal('naturalNumberInfoModal')">
+            <span class="close" onclick="closeModal('naturalNumberInfoModal')">&times;</span>
+            <p>Information about Natural Number Operations goes here.</p>
+        </div>
+    </dialog>
+
+    <div class="footer">
+        Created By: Desiree S. Dagondon
+    </div>
+
+    <script src="scripts.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', function () {
+                let currentSection = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+
+                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').slice(1) === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
             });
         });
-    });
 
-    function openModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.showModal();
-    }
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.showModal();
+        }
 
-    function closeModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.close();
-    }
-</script>
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.close();
+        }
+    </script>
 
+</body>
 
+</html>
