@@ -16,7 +16,28 @@
       color: white;
       text-align: center;
       padding: 10px;
-      margin-bottom: 10px; 
+      margin-bottom: 10px;
+    }
+
+    /* Added style for the modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      z-index: 1;
+    }
+
+    /* Style for the close button */
+    .close {
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
     }
   </style>
   <script>
@@ -30,7 +51,7 @@
         i++;
       }
 
-      document.getElementById("resultFactorial").innerHTML = "Factorial: " + factorial;
+      displayModal("resultFactorialModal", "Factorial: " + factorial);
     }
 
     function calculateSum() {
@@ -43,7 +64,7 @@
         i++;
       } while (i <= n);
 
-      document.getElementById("resultSum").innerHTML = "Sum: " + sum;
+      displayModal("resultSumModal", "Sum: " + sum);
     }
 
     function calculateAverage() {
@@ -55,7 +76,18 @@
       }
 
       var average = sum / n;
-      document.getElementById("resultAverage").innerHTML = "Average: " + average.toFixed(2);
+      displayModal("resultAverageModal", "Average: " + average.toFixed(2));
+    }
+
+    // Display the modal with the given message
+    function displayModal(modalId, message) {
+      document.getElementById(modalId).innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
+      document.getElementById(modalId).style.display = 'block';
+    }
+
+    // Close the modal
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
     }
   </script>
 </head>
@@ -70,17 +102,32 @@
   <label for="factorialInput">Factorial - Enter N:</label>
   <input type="number" id="factorialInput">
   <button onclick="calculateFactorial()">Calculate Factorial</button>
-  <p id="resultFactorial"></p>
+
+  <!-- Modal for displaying factorial result -->
+  <dialog id="resultFactorialModal" class="modal">
+    <!-- Close button (X) is added dynamically -->
+    <p id="resultFactorial"></p>
+  </dialog>
 
   <label for="sumInput">Sum - Enter N:</label>
   <input type="number" id="sumInput">
   <button onclick="calculateSum()">Calculate Sum</button>
-  <p id="resultSum"></p>
+
+  <!-- Modal for displaying sum result -->
+  <dialog id="resultSumModal" class="modal">
+    <!-- Close button (X) is added dynamically -->
+    <p id="resultSum"></p>
+  </dialog>
 
   <label for="averageInput">Average - Enter N:</label>
   <input type="number" id="averageInput">
   <button onclick="calculateAverage()">Calculate Average</button>
-  <p id="resultAverage"></p>
+
+  <!-- Modal for displaying average result -->
+  <dialog id="resultAverageModal" class="modal">
+    <!-- Close button (X) is added dynamically -->
+    <p id="resultAverage"></p>
+  </dialog>
 
   <br>
   <p>
