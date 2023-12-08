@@ -17,6 +17,19 @@
       text-align: center;
       padding: 10px;
     }
+
+    /* Added style for the modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      z-index: 1;
+    }
   </style>
   <script>
     function celsiusToFahrenheit(celsius) {
@@ -38,25 +51,36 @@
     function convertTemperature() {
       var celsiusValue = parseFloat(document.getElementById("celsiusInput").value);
       var fahrenheitValue = celsiusToFahrenheit(celsiusValue);
-      document.getElementById("resultTemperature").innerHTML = "Celsius to Fahrenheit: " + fahrenheitValue.toFixed(2) + " °F";
+      displayModal("resultTemperatureModal", "Celsius to Fahrenheit: " + fahrenheitValue.toFixed(2) + " °F");
     }
 
     function convertTemperatureReverse() {
       var fahrenheitValue = parseFloat(document.getElementById("fahrenheitInput").value);
       var celsiusValue = fahrenheitToCelsius(fahrenheitValue);
-      document.getElementById("resultTemperatureReverse").innerHTML = "Fahrenheit to Celsius: " + celsiusValue.toFixed(2) + " °C";
+      displayModal("resultTemperatureReverseModal", "Fahrenheit to Celsius: " + celsiusValue.toFixed(2) + " °C");
     }
 
     function convertLength() {
       var metersValue = parseFloat(document.getElementById("metersInput").value);
       var feetValue = metersToFeet(metersValue);
-      document.getElementById("resultLength").innerHTML = "Meters to Feet: " + feetValue.toFixed(2) + " feet";
+      displayModal("resultLengthModal", "Meters to Feet: " + feetValue.toFixed(2) + " feet");
     }
 
     function convertLengthReverse() {
       var feetValue = parseFloat(document.getElementById("feetInput").value);
       var metersValue = feetToMeters(feetValue);
-      document.getElementById("resultLengthReverse").innerHTML = "Feet to Meters: " + metersValue.toFixed(2) + " meters";
+      displayModal("resultLengthReverseModal", "Feet to Meters: " + metersValue.toFixed(2) + " meters");
+    }
+
+    // Display the modal with the given message
+    function displayModal(modalId, message) {
+      document.getElementById(modalId).innerHTML = message;
+      document.getElementById(modalId).style.display = 'block';
+    }
+
+    // Close the modal
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
     }
   </script>
 </head>
@@ -72,23 +96,43 @@
   <label for="celsiusInput">Celsius:</label>
   <input type="number" id="celsiusInput">
   <button onclick="convertTemperature()">Convert</button>
-  <p id="resultTemperature"></p>
+
+  <!-- Modal for displaying temperature conversion result -->
+  <div id="resultTemperatureModal" class="modal">
+    <span onclick="closeModal('resultTemperatureModal')" style="cursor: pointer; position: absolute; top: 10px; right: 10px;">&times;</span>
+    <p id="resultTemperature"></p>
+  </div>
 
   <label for="fahrenheitInput">Fahrenheit:</label>
   <input type="number" id="fahrenheitInput">
   <button onclick="convertTemperatureReverse()">Convert</button>
-  <p id="resultTemperatureReverse"></p>
+
+  <!-- Modal for displaying reverse temperature conversion result -->
+  <div id="resultTemperatureReverseModal" class="modal">
+    <span onclick="closeModal('resultTemperatureReverseModal')" style="cursor: pointer; position: absolute; top: 10px; right: 10px;">&times;</span>
+    <p id="resultTemperatureReverse"></p>
+  </div>
 
   <h2>Length Conversion</h2>
   <label for="metersInput">Meters:</label>
   <input type="number" id="metersInput">
   <button onclick="convertLength()">Convert</button>
-  <p id="resultLength"></p>
+
+  <!-- Modal for displaying length conversion result -->
+  <div id="resultLengthModal" class="modal">
+    <span onclick="closeModal('resultLengthModal')" style="cursor: pointer; position: absolute; top: 10px; right: 10px;">&times;</span>
+    <p id="resultLength"></p>
+  </div>
 
   <label for="feetInput">Feet:</label>
   <input type="number" id="feetInput">
   <button onclick="convertLengthReverse()">Convert</button>
-  <p id="resultLengthReverse"></p>
+
+  <!-- Modal for displaying reverse length conversion result -->
+  <div id="resultLengthReverseModal" class="modal">
+    <span onclick="closeModal('resultLengthReverseModal')" style="cursor: pointer; position: absolute; top: 10px; right: 10px;">&times;</span>
+    <p id="resultLengthReverse"></p>
+  </div>
 
   <br>
   <p>
