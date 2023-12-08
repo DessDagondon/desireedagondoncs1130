@@ -85,12 +85,10 @@
     </div>
 
     <h2>Welcome to The Home Page!</h2>
-    
 
     <button onclick="openModal('welcomeModal')">What is this Menu for?</button>
-
     <dialog id="welcomeModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+        <div class="modal-content">
             <span class="close" onclick="closeModal('welcomeModal')">&times;</span>
             <p>The menu is the home base for all five of the required assignment programs... 
                  
@@ -102,54 +100,48 @@
     </dialog>
 
     <button onclick="openModal('sayHelloModal')">Learn about Say Hello</button>
-
     <dialog id="sayHelloModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+        <div class="modal-content">
             <span class="close" onclick="closeModal('sayHelloModal')">&times;</span>
-            <p>SayHello: This program will display information or content related to saying hello, however, this program is not an assignment program</p>
+            <p>SayHello: This program will display information or content related to saying hello; however, this program is not an assignment program.</p>
         </div>
     </dialog>
 
     <button onclick="openModal('gradeComputationModal')">Learn about Grade Computation</button>
-
     <dialog id="gradeComputationModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+        <div class="modal-content">
             <span class="close" onclick="closeModal('gradeComputationModal')">&times;</span>
             <p>This program will calculate a student's final grade based on input grades for different subjects.</p>
         </div>
     </dialog>
 
     <button onclick="openModal('conversionInfoModal')">Learn about Unit Conversion</button>
-
     <dialog id="conversionInfoModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+        <div class="modal-content">
             <span class="close" onclick="closeModal('conversionInfoModal')">&times;</span>
             <p>This program will convert values from one unit to another.</p>
         </div>
     </dialog>
 
     <button onclick="openModal('naturalNumberInfoModal')">Learn about Natural Number Operations</button>
-
     <dialog id="naturalNumberInfoModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+        <div class="modal-content">
             <span class="close" onclick="closeModal('naturalNumberInfoModal')">&times;</span>
-            <p>This program will preform various operations on natural numbers.</p>
+            <p>This program will perform various operations on natural numbers.</p>
         </div>
     </dialog>
 
     <button onclick="openModal('incomeTaxCalculatorModal')">Learn about Income Tax Calculator</button>
-
     <dialog id="incomeTaxCalculatorModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+        <div class="modal-content">
             <span class="close" onclick="closeModal('incomeTaxCalculatorModal')">&times;</span>
             <p>This program calculates the income tax owed based on the user-provided income and relevant tax rules.</p>
         </div>
     </dialog>
 
     <button onclick="openModal('simplePayrollModal')">Learn about Simple Payroll</button>
-
     <dialog id="simplePayrollModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+        <div class="modal-content">
             <span class="close" onclick="closeModal('simplePayrollModal')">&times;</span>
             <p>This program handles basic payroll calculations based on given input.</p>
         </div>
@@ -161,43 +153,46 @@
 
     <script src="scripts.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
+    <!-- ... (your HTML code above) ... -->
 
-            window.addEventListener('scroll', function () {
-                let currentSection = '';
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
+        window.addEventListener('scroll', function () {
+            let currentSection = '';
 
-                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
 
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').slice(1) === currentSection) {
-                        link.classList.add('active');
-                    }
-                });
+                if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === currentSection) {
+                    link.classList.add('active');
+                }
             });
         });
 
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
-            modal.style.display = 'flex';
+            modal.showModal();
         }
 
         function closeModal(modalId) {
             const modal = document.getElementById(modalId);
-            modal.style.display = 'none';
+            modal.close();
         }
-    </script>
+    });
+</script>
 
 </body>
 
 </html>
+
