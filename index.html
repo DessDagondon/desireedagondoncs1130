@@ -77,6 +77,15 @@
             right: 10px;
             cursor: pointer;
         }
+
+        .program-buttons {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .program-buttons button {
+            margin: 10px;
+        }
     </style>
 </head>
 
@@ -102,6 +111,11 @@
             <span class="close" onclick="closeModal()">&times;</span>
             <p>Welcome to my Personal Website, there isn't much here so go to the other options on the header if you'd like!</p>
         </div>
+    </div>
+
+    <div class="program-buttons">
+        <button onclick="openModal('conversionInfo')">Learn about Unit Conversion</button>
+        <button onclick="openModal('naturalNumberInfo')">Learn about Natural Number Operations</button>
     </div>
 
     <div class="footer">
@@ -142,6 +156,14 @@
 
         function closeModal() {
             document.getElementById('myModal').style.display = 'none';
+        }
+
+        function openModal(modalId) {
+            document.getElementById(modalId + 'Modal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId + 'Modal').style.display = 'none';
         }
     </script>
 
