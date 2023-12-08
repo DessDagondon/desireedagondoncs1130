@@ -92,9 +92,14 @@
     <dialog id="welcomeModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closeModal('welcomeModal')">&times;</span>
-            <p>Home Page: The Home Base for the required assignment programs</p>
+            <p>The Home Page is the home base for the required assignment programs... 
+                 
+                 If you wish to access these programs, click one of the 6 options located on the header.
+            </p>
         </div>
     </dialog>
+
+    <button onclick="openModal('sayHelloModal')">Learn about Say Hello</button>
 
     <dialog id="sayHelloModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
@@ -103,43 +108,53 @@
         </div>
     </dialog>
 
+    <button onclick="openModal('gradeComputationModal')">Learn about Grade Computation</button>
+
     <dialog id="gradeComputationModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closeModal('gradeComputationModal')">&times;</span>
-            <p>Grade Computation: This program will calculate a student's final grade based on input grades for different subjects.</p>
+            <p>This program will calculate a student's final grade based on input grades for different subjects.</p>
         </div>
     </dialog>
 
-    <dialog id="unitConversionModal" class="modal">
+    <button onclick="openModal('conversionInfoModal')">Learn about Unit Conversion</button>
+
+    <dialog id="conversionInfoModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
-            <span class="close" onclick="closeModal('unitConversionModal')">&times;</span>
-            <p>Unit Conversion: This program will convert values from one unit to another.</p>
+            <span class="close" onclick="closeModal('conversionInfoModal')">&times;</span>
+            <p>This program will convert values from one unit to another.</p>
         </div>
     </dialog>
 
-    <dialog id="naturalNumberModal" class="modal">
+    <button onclick="openModal('naturalNumberInfoModal')">Learn about Natural Number Operations</button>
+
+    <dialog id="naturalNumberInfoModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
-            <span class="close" onclick="closeModal('naturalNumberModal')">&times;</span>
-            <p>Natural Number Operations: This program will perform various operations on natural numbers.</p>
+            <span class="close" onclick="closeModal('naturalNumberInfoModal')">&times;</span>
+            <p>This program will preform various operations on natural numbers.</p>
         </div>
     </dialog>
+
+    <button onclick="openModal('incomeTaxCalculatorModal')">Learn about Income Tax Calculator</button>
 
     <dialog id="incomeTaxCalculatorModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closeModal('incomeTaxCalculatorModal')">&times;</span>
-            <p>Income Tax Calculator: This program calculates the income tax owed based on the user-provided income and relevant tax rules.</p>
+            <p>This program calculates the income tax owed based on the user-provided income and relevant tax rules.</p>
         </div>
     </dialog>
+
+    <button onclick="openModal('simplePayrollModal')">Learn about Simple Payroll</button>
 
     <dialog id="simplePayrollModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closeModal('simplePayrollModal')">&times;</span>
-            <p>Simple Payroll: This program handles basic payroll calculations based on given input.</p>
+            <p>This program handles basic payroll calculations based on given input.</p>
         </div>
     </dialog>
 
     <div class="footer">
-        Created By: Desiree S. Dagondon
+        Created By: Desiree S. Dagondon, Comsci, 1B CS-1130
     </div>
 
     <script src="scripts.js"></script>
