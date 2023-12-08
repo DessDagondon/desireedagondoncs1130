@@ -56,6 +56,19 @@
         .modal {
             display: none;
         }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -77,21 +90,21 @@
     <button onclick="openModal('welcomeModal')">Click Me</button>
 
     <dialog id="welcomeModal" class="modal">
-        <div onclick="closeModal('welcomeModal')">
+        <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closeModal('welcomeModal')">&times;</span>
             <p>Welcome to my Personal Website, there isn't much here so go to the other options on the header if you'd like!</p>
         </div>
     </dialog>
 
     <dialog id="conversionInfoModal" class="modal">
-        <div onclick="closeModal('conversionInfoModal')">
+        <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closeModal('conversionInfoModal')">&times;</span>
             <p>Information about Unit Conversion goes here.</p>
         </div>
     </dialog>
 
     <dialog id="naturalNumberInfoModal" class="modal">
-        <div onclick="closeModal('naturalNumberInfoModal')">
+        <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closeModal('naturalNumberInfoModal')">&times;</span>
             <p>Information about Natural Number Operations goes here.</p>
         </div>
@@ -131,12 +144,12 @@
 
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
-            modal.showModal();
+            modal.style.display = 'flex';
         }
 
         function closeModal(modalId) {
             const modal = document.getElementById(modalId);
-            modal.close();
+            modal.style.display = 'none';
         }
     </script>
 
