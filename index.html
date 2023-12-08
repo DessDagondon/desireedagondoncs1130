@@ -117,10 +117,17 @@
         </div>
     </dialog>
 
+    <dialog id="naturalNumberModal" class="modal">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <span class="close" onclick="closeModal('naturalNumberModal')">&times;</span>
+            <p>Natural Number Operations: This program will perform various operations on natural numbers.</p>
+        </div>
+    </dialog>
+
     <dialog id="incomeTaxCalculatorModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closeModal('incomeTaxCalculatorModal')">&times;</span>
-            <p>Income Tax Calculator: This program Calculate the income tax owed based on the user-provided income and relevant tax rules.</p>
+            <p>Income Tax Calculator: This program calculates the income tax owed based on the user-provided income and relevant tax rules.</p>
         </div>
     </dialog>
 
