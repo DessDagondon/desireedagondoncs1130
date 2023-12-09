@@ -19,14 +19,18 @@
       margin-bottom: 10px;
     }
 
-    /* Updated style for the modal */
+    /* Added style for the modal */
     .modal {
       display: none;
-      position: absolute;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       background-color: white;
       padding: 20px;
       border-radius: 5px;
       z-index: 1;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adding a subtle box shadow */
     }
 
     /* Style for the close button */
@@ -37,11 +41,9 @@
       right: 10px;
     }
 
-    /* Adjusted style for the resultModal */
+    /* Adjusted the margin-top to bring the result closer to the input */
     #resultModal {
-      left: calc(100% + 20px); /* Position next to the input box */
-      top: 50%; /* Center vertically */
-      transform: translate(0%, -50%);
+      margin-top: 10px;
     }
   </style>
   <script>
@@ -134,7 +136,7 @@
   <input type="number" id="inputValue">
   <button onclick="performOperation()">Calculate</button>
 
-  <!-- Updated modal for displaying result -->
+  <!-- Modal for displaying result -->
   <dialog id="resultModal" class="modal">
     <!-- Close button (X) is added dynamically -->
     <p id="result"></p>
