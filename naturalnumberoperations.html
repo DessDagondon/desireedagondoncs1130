@@ -41,8 +41,30 @@
     }
   </style>
   <script>
-    function calculateFactorial() {
-      var n = parseInt(document.getElementById("factorialInput").value);
+    function performOperation() {
+      var operationType = document.getElementById("operationType").value;
+      var n = parseInt(document.getElementById("inputValue").value);
+      var result;
+
+      switch (operationType) {
+        case "factorial":
+          result = calculateFactorial(n);
+          displayModal("resultModal", "Factorial: " + result);
+          break;
+        case "sum":
+          result = calculateSum(n);
+          displayModal("resultModal", "Sum: " + result);
+          break;
+        case "average":
+          result = calculateAverage(n);
+          displayModal("resultModal", "Average: " + result.toFixed(2));
+          break;
+        default:
+          alert("Invalid operation type");
+      }
+    }
+
+    function calculateFactorial(n) {
       var factorial = 1;
       var i = 1;
 
@@ -51,11 +73,10 @@
         i++;
       }
 
-      displayModal("resultFactorialModal", "Factorial: " + factorial);
+      return factorial;
     }
 
-    function calculateSum() {
-      var n = parseInt(document.getElementById("sumInput").value);
+    function calculateSum(n) {
       var sum = 0;
       var i = 1;
 
@@ -64,19 +85,17 @@
         i++;
       } while (i <= n);
 
-      displayModal("resultSumModal", "Sum: " + sum);
+      return sum;
     }
 
-    function calculateAverage() {
-      var n = parseInt(document.getElementById("averageInput").value);
+    function calculateAverage(n) {
       var sum = 0;
 
       for (var i = 1; i <= n; i++) {
         sum += i;
       }
 
-      var average = sum / n;
-      displayModal("resultAverageModal", "Average: " + average.toFixed(2));
+      return sum / n;
     }
 
     // Display the modal with the given message
@@ -93,44 +112,31 @@
 </head>
 
 <body>
-  
-   <!-- Purple header with link to home -->
+
+  <!-- Purple header with link to home -->
   <div class="purple-header">
     <h1>Natural Number Operations</h1>
     <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
   </div>
 
+  <h2>Select Operation:</h2>
+  <select id="operationType">
+    <option value="factorial">Factorial</option>
+    <option value="sum">Sum</option>
+    <option value="average">Average</option>
+  </select>
 
-  <label for="factorialInput">Factorial - Enter N:</label>
-  <input type="number" id="factorialInput">
-  <button onclick="calculateFactorial()">Calculate Factorial</button>
+  <h2>Enter N:</h2>
+  <input type="number" id="inputValue">
+  <button onclick="performOperation()">Calculate</button>
 
-  <!-- Modal for displaying factorial result -->
-  <dialog id="resultFactorialModal" class="modal">
+  <!-- Modal for displaying result -->
+  <dialog id="resultModal" class="modal">
     <!-- Close button (X) is added dynamically -->
-    <p id="resultFactorial"></p>
-  </dialog>
-
-  <label for="sumInput">Sum - Enter N:</label>
-  <input type="number" id="sumInput">
-  <button onclick="calculateSum()">Calculate Sum</button>
-
-  <!-- Modal for displaying sum result -->
-  <dialog id="resultSumModal" class="modal">
-    <!-- Close button (X) is added dynamically -->
-    <p id="resultSum"></p>
-  </dialog>
-
-  <label for="averageInput">Average - Enter N:</label>
-  <input type="number" id="averageInput">
-  <button onclick="calculateAverage()">Calculate Average</button>
-
-  <!-- Modal for displaying average result -->
-  <dialog id="resultAverageModal" class="modal">
-    <!-- Close button (X) is added dynamically -->
-    <p id="resultAverage"></p>
+    <p id="result"></p>
   </dialog>
 
 </body>
 
 </html>
+
