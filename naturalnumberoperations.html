@@ -40,9 +40,9 @@
       right: 10px;
     }
 
-    /* Style to position result under input */
+    /* Added style to position the result under the input box */
     #resultModal {
-      top: 60%;
+      margin-top: 20px;
     }
   </style>
   <script>
@@ -105,42 +105,4 @@
 
     // Display the modal with the given message
     function displayModal(modalId, message) {
-      document.getElementById(modalId).innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
-      document.getElementById(modalId).style.display = 'block';
-    }
-
-    // Close the modal
-    function closeModal(modalId) {
-      document.getElementById(modalId).style.display = 'none';
-    }
-  </script>
-</head>
-
-<body>
-
-  <!-- Purple header with link to home -->
-  <div class="purple-header">
-    <h1>Natural Number Operations</h1>
-    <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
-  </div>
-
-  <h2>Select Operation:</h2>
-  <select id="operationType">
-    <option value="factorial">Factorial</option>
-    <option value="sum">Sum</option>
-    <option value="average">Average</option>
-  </select>
-
-  <h2>Enter N:</h2>
-  <input type="number" id="inputValue">
-  <button onclick="performOperation()">Calculate</button>
-
-  <!-- Modal for displaying result -->
-  <dialog id="resultModal" class="modal">
-    <!-- Close button (X) is added dynamically -->
-    <p id="result"></p>
-  </dialog>
-
-</body>
-
-</html>
+      document.getElementById(modalId).innerHTML = '<span class=
