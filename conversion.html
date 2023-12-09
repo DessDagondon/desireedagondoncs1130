@@ -40,48 +40,22 @@
     }
   </style>
   <script>
-    function celsiusToFahrenheit(celsius) {
-      return (celsius * 9 / 5) + 32;
-    }
+    function convertUnit(type) {
+      var inputValue = parseFloat(document.getElementById(type + "Input").value);
+      var result;
 
-    function fahrenheitToCelsius(fahrenheit) {
-      return (fahrenheit - 32) * 5 / 9;
-    }
-
-    function metersToFeet(meters) {
-      return meters * 3.28084;
-    }
-
-    function feetToMeters(feet) {
-      return feet / 3.28084;
-    }
-
-    function convertUnits() {
-      var conversionType = document.getElementById("conversionType").value;
-
-      switch (conversionType) {
-        case "celsiusToFahrenheit":
-          var celsiusValue = parseFloat(document.getElementById("celsiusInput").value);
-          var fahrenheitValue = celsiusToFahrenheit(celsiusValue);
-          displayModal("resultTemperatureModal", "Celsius to Fahrenheit: " + fahrenheitValue.toFixed(2) + " °F");
-          break;
-        case "fahrenheitToCelsius":
-          var fahrenheitValue = parseFloat(document.getElementById("fahrenheitInput").value);
-          var celsiusValue = fahrenheitToCelsius(fahrenheitValue);
-          displayModal("resultTemperatureReverseModal", "Fahrenheit to Celsius: " + celsiusValue.toFixed(2) + " °C");
-          break;
-        case "metersToFeet":
-          var metersValue = parseFloat(document.getElementById("metersInput").value);
-          var feetValue = metersToFeet(metersValue);
-          displayModal("resultLengthModal", "Meters to Feet: " + feetValue.toFixed(2) + " feet");
-          break;
-        case "feetToMeters":
-          var feetValue = parseFloat(document.getElementById("feetInput").value);
-          var metersValue = feetToMeters(feetValue);
-          displayModal("resultLengthReverseModal", "Feet to Meters: " + metersValue.toFixed(2) + " meters");
-          break;
-        default:
-          alert("Invalid conversion type");
+      if (type === "celsius") {
+        result = (inputValue * 9 / 5) + 32;
+        displayModal("resultModal", "Celsius to Fahrenheit: " + result.toFixed(2) + " °F");
+      } else if (type === "fahrenheit") {
+        result = (inputValue - 32) * 5 / 9;
+        displayModal("resultModal", "Fahrenheit to Celsius: " + result.toFixed(2) + " °C");
+      } else if (type === "meters") {
+        result = inputValue * 3.28084;
+        displayModal("resultModal", "Meters to Feet: " + result.toFixed(2) + " feet");
+      } else if (type === "feet") {
+        result = inputValue / 3.28084;
+        displayModal("resultModal", "Feet to Meters: " + result.toFixed(2) + " meters");
       }
     }
 
@@ -106,61 +80,22 @@
     <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
   </div>
 
-  <h2>Select Conversion Type:</h2>
-  <select id="conversionType">
-    <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
-    <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
-    <option value="metersToFeet">Meters to Feet</option>
-    <option value="feetToMeters">Feet to Meters</option>
-  </select>
+  <label for="unitInput">Enter Value:</label>
+  <input type="number" id="unitInput">
 
-  <div id="temperatureConversion">
-    <h2>Temperature Conversion</h2>
-    <label for="celsiusInput">Celsius:</label>
-    <input type="number" id="celsiusInput">
-    <button onclick="convertUnits()">Convert</button>
+  <h2>Choose Conversion:</h2>
 
-    <!-- Modal for displaying temperature conversion result -->
-    <div id="resultTemperatureModal" class="modal">
-      <!-- Close button (X) is added dynamically -->
-      <p id="resultTemperature"></p>
-    </div>
+  <button onclick="convertUnit('celsius')">Celsius to Fahrenheit</button>
+  <button onclick="convertUnit('fahrenheit')">Fahrenheit to Celsius</button>
+  <button onclick="convertUnit('meters')">Meters to Feet</button>
+  <button onclick="convertUnit('feet')">Feet to Meters</button>
 
-    <label for="fahrenheitInput">Fahrenheit:</label>
-    <input type="number" id="fahrenheitInput">
-    <button onclick="convertUnits()">Convert</button>
-
-    <!-- Modal for displaying reverse temperature conversion result -->
-    <div id="resultTemperatureReverseModal" class="modal">
-      <!-- Close button (X) is added dynamically -->
-      <p id="resultTemperatureReverse"></p>
-    </div>
-  </div>
-
-  <div id="lengthConversion">
-    <h2>Length Conversion</h2>
-    <label for="metersInput">Meters:</label>
-    <input type="number" id="metersInput">
-    <button onclick="convertUnits()">Convert</button>
-
-    <!-- Modal for displaying length conversion result -->
-    <div id="resultLengthModal" class="modal">
-      <!-- Close button (X) is added dynamically -->
-      <p id="resultLength"></p>
-    </div>
-
-    <label for="feetInput">Feet:</label>
-    <input type="number" id="feetInput">
-    <button onclick="convertUnits()">Convert</button>
-
-    <!-- Modal for displaying reverse length conversion result -->
-    <div id="resultLengthReverseModal" class="modal">
-      <!-- Close button (X) is added dynamically -->
-      <p id="resultLengthReverse"></p>
-    </div>
+  <!-- Modal for displaying conversion result -->
+  <div id="resultModal" class="modal">
+    <!-- Close button (X) is added dynamically -->
+    <p id="result"></p>
   </div>
 
 </body>
 
 </html>
-
