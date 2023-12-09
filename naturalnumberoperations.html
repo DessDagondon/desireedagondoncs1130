@@ -40,12 +40,9 @@
       right: 10px;
     }
 
-    /* Updated style to remove the black border */
-    select,
-    input,
-    button {
-      display: block;
-      margin: 10px auto;
+    /* Style to position result under input */
+    #resultModal {
+      top: 60%;
     }
   </style>
   <script>
@@ -134,10 +131,8 @@
     <option value="average">Average</option>
   </select>
 
-  <!-- Updated layout to place the input value box under the dropdown -->
   <h2>Enter N:</h2>
   <input type="number" id="inputValue">
-
   <button onclick="performOperation()">Calculate</button>
 
   <!-- Modal for displaying result -->
