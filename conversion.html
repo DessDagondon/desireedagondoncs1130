@@ -40,22 +40,30 @@
     }
   </style>
   <script>
-    function convertUnit(type) {
-      var inputValue = parseFloat(document.getElementById(type + "Input").value);
+    function convertUnits() {
+      var conversionType = document.getElementById("conversionType").value;
+      var inputValue = parseFloat(document.getElementById("inputValue").value);
       var result;
 
-      if (type === "celsius") {
-        result = (inputValue * 9 / 5) + 32;
-        displayModal("resultModal", "Celsius to Fahrenheit: " + result.toFixed(2) + " °F");
-      } else if (type === "fahrenheit") {
-        result = (inputValue - 32) * 5 / 9;
-        displayModal("resultModal", "Fahrenheit to Celsius: " + result.toFixed(2) + " °C");
-      } else if (type === "meters") {
-        result = inputValue * 3.28084;
-        displayModal("resultModal", "Meters to Feet: " + result.toFixed(2) + " feet");
-      } else if (type === "feet") {
-        result = inputValue / 3.28084;
-        displayModal("resultModal", "Feet to Meters: " + result.toFixed(2) + " meters");
+      switch (conversionType) {
+        case "celsiusToFahrenheit":
+          result = (inputValue * 9 / 5) + 32;
+          displayModal("resultModal", "Celsius to Fahrenheit: " + result.toFixed(2) + " °F");
+          break;
+        case "fahrenheitToCelsius":
+          result = (inputValue - 32) * 5 / 9;
+          displayModal("resultModal", "Fahrenheit to Celsius: " + result.toFixed(2) + " °C");
+          break;
+        case "metersToFeet":
+          result = inputValue * 3.28084;
+          displayModal("resultModal", "Meters to Feet: " + result.toFixed(2) + " feet");
+          break;
+        case "feetToMeters":
+          result = inputValue / 3.28084;
+          displayModal("resultModal", "Feet to Meters: " + result.toFixed(2) + " meters");
+          break;
+        default:
+          alert("Invalid conversion type");
       }
     }
 
@@ -80,15 +88,17 @@
     <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
   </div>
 
-  <label for="unitInput">Enter Value:</label>
-  <input type="number" id="unitInput">
+  <h2>Select Conversion Type:</h2>
+  <select id="conversionType">
+    <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
+    <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
+    <option value="metersToFeet">Meters to Feet</option>
+    <option value="feetToMeters">Feet to Meters</option>
+  </select>
 
-  <h2>Choose Conversion:</h2>
-
-  <button onclick="convertUnit('celsius')">Celsius to Fahrenheit</button>
-  <button onclick="convertUnit('fahrenheit')">Fahrenheit to Celsius</button>
-  <button onclick="convertUnit('meters')">Meters to Feet</button>
-  <button onclick="convertUnit('feet')">Feet to Meters</button>
+  <h2>Enter Value:</h2>
+  <input type="number" id="inputValue">
+  <button onclick="convertUnits()">Convert</button>
 
   <!-- Modal for displaying conversion result -->
   <div id="resultModal" class="modal">
