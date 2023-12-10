@@ -10,7 +10,7 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #BDBDBD; 
+            background-color: #BDBDBD;
         }
 
         .black-header {
@@ -54,21 +54,59 @@
             width: 100%;
         }
 
+        /* Style for the modal */
         .modal {
             display: none;
-        }
-
-        .modal-content {
-            background-color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 10px;
+            z-index: 1;
         }
 
+        /* Style for the modal content */
+        .modal-content {
+            background-color: #fefefe; /* White background */
+            color: #333; /* Dark text color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+            animation: fadeIn 0.3s ease-in-out; /* Fade-in animation */
+        }
+
+        /* Style for the close button */
         .close {
+            font-size: 20px;
+            color: #aaa; /* Lighter color for close button */
             position: absolute;
             top: 10px;
             right: 10px;
             cursor: pointer;
+        }
+
+        /* Hover effect for the close button */
+        .close:hover {
+            color: #fff; /* Change color on hover */
+        }
+
+        /* Adding a subtle animation effect */
+        .modal-content {
+            animation: fadeIn 0.3s ease-in-out; /* Fade-in animation */
+        }
+
+        /* Keyframes for the animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -86,18 +124,18 @@
     </div>
 
     <h2>Welcome to The Home Page!</h2>
-    
 
     <button onclick="openModal('welcomeModal')">What is this Menu for?</button>
 
     <dialog id="welcomeModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closeModal('welcomeModal')">&times;</span>
-            <p>The menu is the home base for all four of the required assignment programs... 
-                 
-                 If you wish to access these programs, click on one of the four options located on the header.      
-                      
-                If you would like to know a little about what these websites will do, feel free to click on the Learn About options.
+            <p>The menu is the home base for all four of the required assignment programs...
+
+                If you wish to access these programs, click on one of the four options located on the header.
+
+                If you would like to know a little about what these websites will do, feel free to click on the Learn
+                About options.
             </p>
         </div>
     </dialog>
@@ -111,16 +149,19 @@
         </div>
     </dialog>
 
-    <button onclick="openModal('incomeTaxCalculatorModal')">Learn about Assignment #2: Income Tax Calculator Program</button>
+    <button onclick="openModal('incomeTaxCalculatorModal')">Learn about Assignment #2: Income Tax Calculator
+        Program</button>
 
     <dialog id="incomeTaxCalculatorModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closeModal('incomeTaxCalculatorModal')">&times;</span>
-            <p>This program calculates the income tax owed based on the user-provided income and relevant tax rules.</p>
+            <p>This program calculates the income tax owed based on the user-provided income and relevant tax rules.
+            </p>
         </div>
     </dialog>
 
-    <button onclick="openModal('naturalNumberInfoModal')">Learn about Assignment #3: Natural Number Operations Program</button>
+    <button onclick="openModal('naturalNumberInfoModal')">Learn about Assignment #3: Natural Number Operations
+        Program</button>
 
     <dialog id="naturalNumberInfoModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
@@ -129,8 +170,8 @@
         </div>
     </dialog>
 
-   <button onclick="openModal('simplePayrollModal')">Learn about Assignment #4: Simple Payroll Program</button>
-    
+    <button onclick="openModal('simplePayrollModal')">Learn about Assignment #4: Simple Payroll Program</button>
+
     <dialog id="simplePayrollModal" class="modal">
         <div class="modal-content" onclick="event.stopPropagation();">
             <span class="close" onclick="closeModal('simplePayrollModal')">&times;</span>
@@ -139,7 +180,7 @@
     </dialog>
 
     <div class="footer">
-        Created By: Desiree S. Dagondon, Comsci, 1B CS-1130
+        Created By: Desiree S. Dagondon Comsci-1B CS-1130
     </div>
 
     <script src="scripts.js"></script>
@@ -183,4 +224,5 @@
 
 </body>
 
-</html>  
+</html>
+
