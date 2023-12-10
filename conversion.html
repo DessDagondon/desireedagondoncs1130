@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="utf-8">
@@ -8,39 +8,28 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f5f5f5; /* Light gray background */
+      font-family: Arial, sans-serif;
+      background-color:  #FFCDD2;
     }
 
     .red-header {
-      background-color: #e53935; /* Dark red header */
+      background-color: red;
       color: white;
       text-align: center;
-      padding: 20px;
+      padding: 10px;
     }
 
-    /* Added style for the modal with pulsating effect */
+    /* Added style for the modal */
     .modal {
       display: none;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: #ffffff; /* White modal background */
-      padding: 30px;
-      border-radius: 10px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
       z-index: 1;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      animation: pulsateModal 1.5s ease infinite alternate; /* Continuous pulsating effect */
-    }
-
-    @keyframes pulsateModal {
-      from {
-        transform: scale(1);
-      }
-      to {
-        transform: scale(1.1);
-      }
     }
 
     /* Style for the close button */
@@ -49,38 +38,6 @@
       position: absolute;
       top: 10px;
       right: 10px;
-      font-size: 20px;
-      color: #555;
-    }
-
-    /* Style for the conversion form */
-    #conversionForm {
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    select, input, button {
-      margin: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-      width: 60%; /* Adjusted width for better alignment */
-    }
-
-    input::placeholder {
-      color: #aaa; /* Placeholder text color */
-    }
-
-    button {
-      background-color: #e53935; /* Dark red button */
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #c62828; /* Darker red on hover */
     }
   </style>
   <script>
@@ -126,32 +83,30 @@
 
 <body>
 
-  <!-- Dark red header with link to home -->
+  <!-- Red header with link to home -->
   <div class="red-header">
     <h1>Unit Conversion</h1>
     <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
   </div>
 
-  <!-- Conversion form -->
-  <div id="conversionForm">
-    <h2>Select Conversion Type:</h2>
-    <select id="conversionType">
-      <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
-      <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
-      <option value="metersToFeet">Meters to Feet</option>
-      <option value="feetToMeters">Feet to Meters</option>
-    </select>
+  <h2>Select Conversion Type:</h2>
+  <select id="conversionType">
+    <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
+    <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
+    <option value="metersToFeet">Meters to Feet</option>
+    <option value="feetToMeters">Feet to Meters</option>
+  </select>
 
-    <h2>Enter Value:</h2>
-    <input type="number" id="inputValue" placeholder="Enter value">
-    <button onclick="convertUnits()">Convert</button>
-  </div>
+  <h2>Enter Value:</h2>
+  <input type="number" id="inputValue">
+  <button onclick="convertUnits()">Convert</button>
 
   <!-- Modal for displaying conversion result -->
   <dialog id="resultModal" class="modal">
     <!-- Close button (X) is added dynamically -->
-    <span class="close" onclick="closeModal('resultModal')">&times;</span>
     <p id="result"></p>
   </dialog>
 
 </body>
+
+</html>
