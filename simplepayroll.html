@@ -2,163 +2,174 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>Unit Conversion</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-      background-color: #FFCDD2;
-    }
+    <meta charset="utf-8">
+    <title>Payroll Program</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #E3F2FD; /* Light blue background */
+        }
 
-    .red-header {
-      background-color: #EF5350;
-      color: white;
-      text-align: center;
-      padding: 20px;
-    }
+        .blue-header {
+            background-color: #1565C0; /* Dark blue header */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            line-height: 30px;
+            margin-bottom: 20px; /* Increased margin for better spacing */
+        }
 
-    #conversionForm {
-      text-align: center;
-      margin-top: 30px;
-    }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px; /* Increased margin for better spacing */
+        }
 
-    select,
-    input,
-    button {
-      margin: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-      width: 60%;
-      box-sizing: border-box;
-    }
+        th, td {
+            border: 1px solid #1565C0; /* Dark blue border */
+            padding: 10px; /* Reduced padding for a more compact table */
+            text-align: left;
+        }
 
-    input::placeholder {
-      color: #aaa;
-    }
+        /* Added style for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
 
-    button {
-      background-color: #EF5350;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
+        /* Style for the close button */
+        .close {
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #1565C0; /* Dark blue close button */
+        }
 
-    button:hover {
-      background-color: #D32F2F;
-    }
+        /* Adjusted button styles for better consistency */
+        button {
+            background-color: #1565C0;
+            color: white;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 10px; /* Increased margin for better spacing */
+            box-sizing: border-box;
+            font-size: 16px;
+        }
 
-    /* Added style for the modal with pulsating effect */
-    #resultModal {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 10px;
-      z-index: 1;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      animation: pulsateModal 1.5s ease infinite alternate; /* Continuous pulsating effect */
-    }
+        button:hover {
+            background-color: #0D47A1; /* Darker blue on hover */
+        }
+    </style>
+    <script>
+        let payrollList = [];
 
-    @keyframes pulsateModal {
-      from {
-        transform: scale(1);
-      }
-      to {
-        transform: scale(1.1);
-      }
-    }
+        function addEmployee() {
+            var employeeName = prompt("Enter Employee Name:");
+            var daysWorked = parseFloat(prompt("Enter Days Worked:"));
+            var dailyRate = parseFloat(prompt("Enter Daily Rate:"));
+            var deductionAmount = parseFloat(prompt("Enter Deduction Amount:"));
 
-    /* Style for the close button */
-    .close {
-      cursor: pointer;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 20px;
-      color: #555;
-    }
-  </style>
-  <script>
-    function convertUnits() {
-      var conversionType = document.getElementById("conversionType").value;
-      var inputValue = parseFloat(document.getElementById("inputValue").value);
-      var result;
+            var grossPay = daysWorked * dailyRate;
+            var netPay = grossPay - deductionAmount;
 
-      switch (conversionType) {
-        case "celsiusToFahrenheit":
-          result = (inputValue * 9 / 5) + 32;
-          displayModal("resultModal", "Celsius to Fahrenheit: " + result.toFixed(2) + " °F");
-          break;
-        case "fahrenheitToCelsius":
-          result = (inputValue - 32) * 5 / 9;
-          displayModal("resultModal", "Fahrenheit to Celsius: " + result.toFixed(2) + " °C");
-          break;
-        case "metersToFeet":
-          result = inputValue * 3.28084;
-          displayModal("resultModal", "Meters to Feet: " + result.toFixed(2) + " feet");
-          break;
-        case "feetToMeters":
-          result = inputValue / 3.28084;
-          displayModal("resultModal", "Feet to Meters: " + result.toFixed(2) + " meters");
-          break;
-        default:
-          alert("Invalid conversion type");
-      }
-    }
+            var employee = {
+                name: employeeName,
+                days: daysWorked,
+                rate: dailyRate,
+                deduction: deductionAmount,
+                grossPay: grossPay,
+                netPay: netPay
+            };
 
-    // Display the modal with the given message
-    function displayModal(modalId, message) {
-      var modal = document.getElementById(modalId);
-      modal.innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span><p id="result">' + message + '</p>';
-      modal.style.display = 'block';
-    }
+            payrollList.push(employee);
+            displayPayroll();
+        }
 
-    // Close the modal
-    function closeModal(modalId) {
-      var modal = document.getElementById(modalId);
-      modal.style.display = 'none';
-    }
-  </script>
+        function deleteEmployee() {
+            // Display confirmation modal
+            if (confirm("Are you sure you want to delete an employee?")) {
+                var lineNumber = parseInt(prompt("Enter Line Number to Delete:")) - 1;
+
+                if (lineNumber >= 0 && lineNumber < payrollList.length) {
+                    payrollList.splice(lineNumber, 1);
+                    displayPayroll();
+                } else {
+                    alert("Invalid Line Number");
+                }
+            }
+        }
+
+        function deleteEntireContents() {
+            // Display confirmation modal
+            if (confirm("Are you sure you want to delete the contents of this program?")) {
+                payrollList = [];
+                displayPayroll();
+            }
+        }
+
+        // Display the modal with the given message
+        function displayModal(modalId, message) {
+            document.getElementById(modalId).innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        // Close the modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function displayPayroll() {
+            var table = "<table><tr><th>No.</th><th>Employee Name</th><th>Days Worked</th><th>Daily Rate</th><th>Gross Pay</th><th>Deduction Amount</th><th>Net Pay</th></tr>";
+
+            for (var i = 0; i < payrollList.length; i++) {
+                var lineNumber = i + 1;
+                table += "<tr><td>" + lineNumber + "</td><td>" + payrollList[i].name + "</td><td>" + payrollList[i].days + "</td><td>" + payrollList[i].rate + "</td><td>" + payrollList[i].grossPay.toFixed(2) + "</td><td>" + payrollList[i].deduction.toFixed(2) + "</td><td>" + payrollList[i].netPay.toFixed(2) + "</td></tr>";
+            }
+
+            table += "</table>";
+            document.getElementById("payrollTable").innerHTML = table;
+        }
+    </script>
 </head>
 
 <body>
 
-  <!-- Red header with link to home -->
-  <div class="red-header">
-    <h1>Unit Conversion</h1>
-    <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
-  </div>
+    <!-- Blue header with link to home -->
+    <div class="blue-header">
+        <h1>Payroll Program</h1>
+        <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
+    </div>
 
-  <!-- Conversion form -->
-  <div id="conversionForm">
-    <h2>Select Conversion Type:</h2>
-    <select id="conversionType">
-      <option value="celsiusToFahrenheit">Celsius to Fahrenheit</option>
-      <option value="fahrenheitToCelsius">Fahrenheit to Celsius</option>
-      <option value="metersToFeet">Meters to Feet</option>
-      <option value="feetToMeters">Feet to Meters</option>
-    </select>
+    <button onclick="addEmployee()">Add Employee</button>
+    <button onclick="deleteEmployee()">Delete Employee</button>
+    <button onclick="deleteEntireContents()">Delete Entire Contents</button>
 
-    <h2>Enter Value:</h2>
-    <input type="number" id="inputValue" placeholder="Enter value">
-    <button onclick="convertUnits()">Convert</button>
-  </div>
+    <!-- Modal for displaying employee deletion confirmation -->
+    <dialog id="deleteEmployeeModal" class="modal">
+        <span class="close" onclick="closeModal('deleteEmployeeModal')">&times;</span>
+        <p>Are you sure you want to delete an employee?</p>
+        <button onclick="deleteEmployeeConfirmed()">Yes</button>
+        <button onclick="closeModal('deleteEmployeeModal')">No</button>
+    </dialog>
 
-  <!-- Modal for displaying conversion result -->
-  <dialog id="resultModal" class="modal">
-    <!-- Close button (X) is added dynamically -->
-    <span class="close" onclick="closeModal('resultModal')">&times;</span>
-    <p id="result"></p>
-  </dialog>
+    <div id="payrollTable"></div>
 
 </body>
 
 </html>
-
