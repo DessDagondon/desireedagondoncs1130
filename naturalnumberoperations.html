@@ -9,26 +9,16 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #E1BEE7;
-      animation: none;
-    }
-
-    @keyframes fadeInBackground {
-      from {
-        background-color: #fff;
-      }
-      to {
-        background-color: #E1BEE7;
-      }
     }
 
     .purple-header {
       background-color: purple;
       color: white;
       text-align: center;
-      padding: 20px; /* Increased padding for a more prominent header */
-      margin-bottom: 20px; /* Increased margin for a balanced look */
+      padding: 20px;
+      margin-bottom: 20px;
     }
 
     .modal {
@@ -63,7 +53,7 @@
     }
 
     #resultModal {
-      margin-top: 20px; /* Increased margin for a balanced look */
+      margin-top: 20px;
     }
 
     button {
@@ -82,7 +72,14 @@
 
     input {
       padding: 10px;
-      margin-bottom: 20px; /* Increased margin for a balanced look */
+      margin-bottom: 20px;
+    }
+
+    select,
+    input,
+    button {
+      display: block;
+      margin: 10px auto;
     }
   </style>
   <script>
@@ -165,15 +162,13 @@
     <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
   </div>
 
-  <h2>Select Operation:</h2>
   <select id="operationType">
     <option value="factorial">Factorial</option>
     <option value="sum">Sum</option>
     <option value="average">Average</option>
   </select>
 
-  <h2>Enter N:</h2>
-  <input type="number" id="inputValue">
+  <input type="number" id="inputValue" placeholder="Enter N">
   <button onclick="performOperation()">Calculate</button>
 
   <dialog id="resultModal" class="modal">
