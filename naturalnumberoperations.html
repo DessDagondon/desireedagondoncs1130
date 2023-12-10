@@ -10,15 +10,46 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #E1BEE7;
+      background-color: #f4f4f4;
     }
 
-    .purple-header {
-      background-color: purple;
+    header {
+      background-color: #4a148c;
       color: white;
       text-align: center;
       padding: 20px;
       margin-bottom: 20px;
+    }
+
+    main {
+      width: 80%;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    select,
+    input,
+    button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4a148c;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #6a1b9a;
     }
 
     .modal {
@@ -50,40 +81,15 @@
       top: 10px;
       right: 10px;
       font-size: 20px;
+      color: #4a148c;
     }
 
     #resultModal {
       margin-top: 20px;
     }
-
-    button {
-      background-color: purple;
-      color: white;
-      padding: 12px;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      border-radius: 5px;
-    }
-
-    button:hover {
-      background-color: #6A1B9A;
-    }
-
-    input {
-      padding: 10px;
-      margin-bottom: 20px;
-    }
-
-    select,
-    input,
-    button {
-      display: block;
-      margin: 10px auto;
-    }
   </style>
   <script>
-    function performOperation() {
+      function performOperation() {
       var operationType = document.getElementById("operationType").value;
       var n = parseInt(document.getElementById("inputValue").value);
       var result;
