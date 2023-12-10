@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-       background-color: #fadee3; 
+      background-color: #fadee3;
     }
 
     .pink-header {
@@ -18,10 +18,10 @@
       text-align: center;
       padding: 10px;
       line-height: 30px;
-      margin-bottom: 10px; 
+      margin-bottom: 10px;
     }
 
-    /* Added style for the modal */
+    /* Added style for the modal with pulsating effect */
     .modal {
       display: none;
       position: fixed;
@@ -32,6 +32,16 @@
       padding: 20px;
       border-radius: 5px;
       z-index: 1;
+      animation: pulsateModal 1.5s ease infinite alternate; /* Continuous pulsating effect */
+    }
+
+    @keyframes pulsateModal {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.1);
+      }
     }
 
     /* Style for the close button */
@@ -78,7 +88,7 @@
 </head>
 
 <body>
-  
+
   <!-- Pink header with link to home -->
   <div class="pink-header">
     <h1>Income Tax Calculator</h1>
@@ -92,6 +102,7 @@
   <!-- Modal for displaying income tax calculation result -->
   <dialog id="resultIncomeTaxModal" class="modal">
     <!-- Close button (X) is added dynamically -->
+    <span class="close" onclick="closeModal('resultIncomeTaxModal')">&times;</span>
     <p id="resultIncomeTax"></p>
   </dialog>
 
