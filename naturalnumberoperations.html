@@ -21,8 +21,38 @@
       margin-bottom: 20px;
     }
 
-    #resultSection {
-      text-align: center;
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      z-index: 1;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      animation: pulsateModal 1.5s ease infinite alternate;
+    }
+
+    @keyframes pulsateModal {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.1);
+      }
+    }
+
+    .close {
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+    }
+
+    #resultModal {
       margin-top: 20px;
     }
 
@@ -51,42 +81,6 @@
       display: block;
       margin: 10px auto;
     }
-
-    #resultText {
-      font-size: 18px;
-      color: #333;
-      margin-bottom: 10px;
-    }
-
-    #resultValue {
-      font-size: 24px;
-      font-weight: bold;
-      color: purple;
-    }
-
-    /* Style for the modal */
-    dialog {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      z-index: 1;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      animation: pulsateModal 1.5s ease infinite alternate;
-    }
-
-    @keyframes pulsateModal {
-      from {
-        transform: scale(1);
-      }
-      to {
-        transform: scale(1.1);
-      }
-    }
   </style>
   <script>
     function performOperation() {
@@ -97,15 +91,15 @@
       switch (operationType) {
         case "factorial":
           result = calculateFactorial(n);
-          displayModal("Factorial", result);
+          displayModal("resultModal", "Factorial: " + result);
           break;
         case "sum":
           result = calculateSum(n);
-          displayModal("Sum", result);
+          displayModal("resultModal", "Sum: " + result);
           break;
         case "average":
           result = calculateAverage(n);
-          displayModal("Average", result.toFixed(2));
+          displayModal("resultModal", "Average: " + result.toFixed(2));
           break;
         default:
           alert("Invalid operation type");
@@ -146,16 +140,17 @@
       return sum / n;
     }
 
-    function displayModal(operationType, result) {
-      var dialog = document.getElementById("resultModal");
-      dialog.querySelector("#resultText").innerText = operationType + " Result:";
-      dialog.querySelector("#resultValue").innerText = result;
-      dialog.showModal();
+    function displayModal(modalId, message) {
+      document.getElementById(modalId).innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
+      document.getElementById(modalId).style.display = 'block';
     }
 
-    function closeModal() {
-      var dialog = document.getElementById("resultModal");
-      dialog.close();
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.animation = 'fadeOutModal 0.5s ease';
+      setTimeout(function () {
+        document.getElementById(modalId).style.display = 'none';
+        document.getElementById(modalId).style.animation = '';
+      }, 500);
     }
   </script>
 </head>
@@ -176,11 +171,8 @@
   <input type="number" id="inputValue" placeholder="Enter N">
   <button onclick="performOperation()">Calculate</button>
 
-  <!-- Result modal -->
   <dialog id="resultModal" class="modal">
-    <p id="resultText"></p>
-    <p id="resultValue"></p>
-    <button onclick="closeModal()">Close</button>
+    <p id="result"></p>
   </dialog>
 
 </body>
