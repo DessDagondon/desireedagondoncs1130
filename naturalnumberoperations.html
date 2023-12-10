@@ -21,27 +21,14 @@
       margin-bottom: 20px;
     }
 
-    .modal {
+    #resultSection {
       display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      text-align: center;
+      margin-top: 20px;
+      padding: 20px;
       background-color: #fff;
-      padding: 30px;
       border-radius: 10px;
-      z-index: 1;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      animation: pulsateModal 1.5s ease infinite alternate;
-    }
-
-    @keyframes pulsateModal {
-      from {
-        transform: scale(1);
-      }
-      to {
-        transform: scale(1.1);
-      }
     }
 
     .close {
@@ -52,10 +39,6 @@
       font-size: 20px;
     }
 
-    #resultModal {
-      margin-top: 20px;
-    }
-
     button {
       background-color: purple;
       color: white;
@@ -64,6 +47,7 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       border-radius: 5px;
+      margin-top: 20px;
     }
 
     button:hover {
@@ -73,13 +57,20 @@
     input {
       padding: 10px;
       margin-bottom: 20px;
-    }
-
-    select,
-    input,
-    button {
       display: block;
       margin: 10px auto;
+      width: 60%;
+    }
+
+    #resultText {
+      font-size: 18px;
+      color: #333;
+    }
+
+    #resultValue {
+      font-size: 24px;
+      font-weight: bold;
+      color: purple;
     }
   </style>
   <script>
@@ -91,15 +82,15 @@
       switch (operationType) {
         case "factorial":
           result = calculateFactorial(n);
-          displayModal("resultModal", "Factorial: " + result);
+          displayResult("Factorial", result);
           break;
         case "sum":
           result = calculateSum(n);
-          displayModal("resultModal", "Sum: " + result);
+          displayResult("Sum", result);
           break;
         case "average":
           result = calculateAverage(n);
-          displayModal("resultModal", "Average: " + result.toFixed(2));
+          displayResult("Average", result.toFixed(2));
           break;
         default:
           alert("Invalid operation type");
@@ -140,17 +131,10 @@
       return sum / n;
     }
 
-    function displayModal(modalId, message) {
-      document.getElementById(modalId).innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
-      document.getElementById(modalId).style.display = 'block';
-    }
-
-    function closeModal(modalId) {
-      document.getElementById(modalId).style.animation = 'fadeOutModal 0.5s ease';
-      setTimeout(function () {
-        document.getElementById(modalId).style.display = 'none';
-        document.getElementById(modalId).style.animation = '';
-      }, 500);
+    function displayResult(operationType, result) {
+      document.getElementById("resultText").innerText = operationType + " Result:";
+      document.getElementById("resultValue").innerText = result;
+      document.getElementById("resultSection").style.display = 'block';
     }
   </script>
 </head>
@@ -171,9 +155,11 @@
   <input type="number" id="inputValue" placeholder="Enter N">
   <button onclick="performOperation()">Calculate</button>
 
-  <dialog id="resultModal" class="modal">
-    <p id="result"></p>
-  </dialog>
+  <!-- Result section -->
+  <div id="resultSection">
+    <p id="resultText"></p>
+    <p id="resultValue"></p>
+  </div>
 
 </body>
 
