@@ -9,11 +9,11 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #ff9494; /* Light red background */
+      background-color: #f5f5f5; /* Light gray background */
     }
 
     .red-header {
-      background-color: #e00000; /* Red header */
+      background-color: #e53935; /* Dark red header */
       color: white;
       text-align: center;
       padding: 20px;
@@ -26,7 +26,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: #FFFFFF; /* White modal background */
+      background-color: #ffffff; /* White modal background */
       padding: 30px;
       border-radius: 10px;
       z-index: 1;
@@ -65,21 +65,22 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       font-size: 16px;
+      width: 60%; /* Adjusted width for better alignment */
     }
 
-    input {
-      width: 100%;
+    input::placeholder {
+      color: #aaa; /* Placeholder text color */
     }
 
     button {
-      background-color: #E53935; /* Dark red button */
+      background-color: #e53935; /* Dark red button */
       color: white;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #e00000; /* Red on hover */
+      background-color: #c62828; /* Darker red on hover */
     }
   </style>
   <script>
@@ -125,7 +126,7 @@
 
 <body>
 
-  <!-- Red header with link to home -->
+  <!-- Dark red header with link to home -->
   <div class="red-header">
     <h1>Unit Conversion</h1>
     <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
@@ -156,4 +157,3 @@
 </body>
 
 </html>
-
