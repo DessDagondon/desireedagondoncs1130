@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #BDBDBD;
+            transition: background-color 0.5s ease; /* Add transition for background color change */
         }
 
         .black-header {
@@ -26,6 +27,7 @@
             text-decoration: none;
             position: relative;
             display: inline-block;
+            transition: color 0.5s ease; /* Add transition for text color change */
         }
 
         .nav-link::before {
@@ -220,11 +222,15 @@
             const modal = document.getElementById(modalId);
             modal.style.display = 'none';
         }
+
+        // Function to handle link clicks with fade-out and fade-in effect
+        function switchProgram(url) {
+            document.body.style.backgroundColor = 'transparent'; // Set background to transparent for fade-out effect
+            setTimeout(function () {
+                window.location.href = url; // Redirect to the new program
+            }, 500); // Set the delay to match the transition duration
+        }
     </script>
-
-</body>
-
-</html>
 
 </body>
 
