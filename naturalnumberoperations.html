@@ -22,13 +22,8 @@
     }
 
     #resultSection {
-      display: none;
       text-align: center;
       margin-top: 20px;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     }
 
     button {
@@ -68,6 +63,30 @@
       font-weight: bold;
       color: purple;
     }
+
+    /* Style for the modal */
+    dialog {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      z-index: 1;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      animation: pulsateModal 1.5s ease infinite alternate;
+    }
+
+    @keyframes pulsateModal {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.1);
+      }
+    }
   </style>
   <script>
     function performOperation() {
@@ -78,15 +97,15 @@
       switch (operationType) {
         case "factorial":
           result = calculateFactorial(n);
-          displayResult("Factorial", result);
+          displayModal("Factorial", result);
           break;
         case "sum":
           result = calculateSum(n);
-          displayResult("Sum", result);
+          displayModal("Sum", result);
           break;
         case "average":
           result = calculateAverage(n);
-          displayResult("Average", result.toFixed(2));
+          displayModal("Average", result.toFixed(2));
           break;
         default:
           alert("Invalid operation type");
@@ -127,10 +146,16 @@
       return sum / n;
     }
 
-    function displayResult(operationType, result) {
-      document.getElementById("resultText").innerText = operationType + " Result:";
-      document.getElementById("resultValue").innerText = result;
-      document.getElementById("resultSection").style.display = 'block';
+    function displayModal(operationType, result) {
+      var dialog = document.getElementById("resultModal");
+      dialog.querySelector("#resultText").innerText = operationType + " Result:";
+      dialog.querySelector("#resultValue").innerText = result;
+      dialog.showModal();
+    }
+
+    function closeModal() {
+      var dialog = document.getElementById("resultModal");
+      dialog.close();
     }
   </script>
 </head>
@@ -151,11 +176,12 @@
   <input type="number" id="inputValue" placeholder="Enter N">
   <button onclick="performOperation()">Calculate</button>
 
-  <!-- Result section -->
-  <div id="resultSection">
+  <!-- Result modal -->
+  <dialog id="resultModal" class="modal">
     <p id="resultText"></p>
     <p id="resultValue"></p>
-  </div>
+    <button onclick="closeModal()">Close</button>
+  </dialog>
 
 </body>
 
