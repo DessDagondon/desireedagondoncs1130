@@ -8,9 +8,9 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       background-color: #E1BEE7;
-      animation: none
+      animation: fadeInBackground 1.5s ease; /* Fading background effect */
     }
 
     @keyframes fadeInBackground {
@@ -23,11 +23,11 @@
     }
 
     .purple-header {
-      background-color: purple;
+      background-color: #6A1B9A;
       color: white;
       text-align: center;
-      padding: 10px;
-      margin-bottom: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
     }
 
     .modal {
@@ -59,14 +59,15 @@
       top: 10px;
       right: 10px;
       font-size: 20px;
+      color: #333;
     }
 
     #resultModal {
-      margin-top: 10px;
+      margin-top: 20px;
     }
 
     button {
-      background-color: purple;
+      background-color: #6A1B9A;
       color: white;
       padding: 12px;
       border: none;
@@ -76,11 +77,36 @@
     }
 
     button:hover {
-      background-color: #6A1B9A;
+      background-color: #4A148C;
     }
 
     input {
       padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #6A1B9A;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    select,
+    input,
+    button {
+      display: block;
+      margin: 10px auto;
+      width: 60%;
+      box-sizing: border-box;
+    }
+
+    #resultText {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    #resultValue {
+      font-size: 24px;
+      font-weight: bold;
+      color: #6A1B9A;
     }
   </style>
   <script>
@@ -92,15 +118,15 @@
       switch (operationType) {
         case "factorial":
           result = calculateFactorial(n);
-          displayModal("resultModal", "Factorial: " + result);
+          displayResult("Factorial", result);
           break;
         case "sum":
           result = calculateSum(n);
-          displayModal("resultModal", "Sum: " + result);
+          displayResult("Sum", result);
           break;
         case "average":
           result = calculateAverage(n);
-          displayModal("resultModal", "Average: " + result.toFixed(2));
+          displayResult("Average", result.toFixed(2));
           break;
         default:
           alert("Invalid operation type");
@@ -141,16 +167,17 @@
       return sum / n;
     }
 
-    function displayModal(modalId, message) {
-      document.getElementById(modalId).innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
-      document.getElementById(modalId).style.display = 'block';
+    function displayResult(operationType, result) {
+      document.getElementById("resultText").innerText = operationType + " Result:";
+      document.getElementById("resultValue").innerText = result;
+      document.getElementById("resultModal").style.display = 'block';
     }
 
-    function closeModal(modalId) {
-      document.getElementById(modalId).style.animation = 'fadeOutModal 0.5s ease';
+    function closeModal() {
+      document.getElementById("resultModal").style.animation = 'fadeOutModal 0.5s ease';
       setTimeout(function () {
-        document.getElementById(modalId).style.display = 'none';
-        document.getElementById(modalId).style.animation = '';
+        document.getElementById("resultModal").style.display = 'none';
+        document.getElementById("resultModal").style.animation = '';
       }, 500);
     }
   </script>
@@ -163,20 +190,21 @@
     <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
   </div>
 
-  <h2>Select Operation:</h2>
   <select id="operationType">
     <option value="factorial">Factorial</option>
     <option value="sum">Sum</option>
     <option value="average">Average</option>
   </select>
 
-  <h2>Enter N:</h2>
-  <input type="number" id="inputValue">
+  <input type="number" id="inputValue" placeholder="Enter N">
   <button onclick="performOperation()">Calculate</button>
 
-  <dialog id="resultModal" class="modal">
-    <p id="result"></p>
-  </dialog>
+  <!-- Result section -->
+  <div id="resultModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <p id="resultText"></p>
+    <p id="resultValue"></p>
+  </div>
 
 </body>
 
