@@ -4,42 +4,151 @@
 <head>
     <meta charset="utf-8">
     <title>Home Page</title>
-
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Your existing styles remain unchanged */
-
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #BDBDBD;
-            scroll-behavior: smooth; /* Enable smooth scrolling for the entire page */
+            transition: background-color 0.5s ease; /* Add a transition for background color */
         }
 
-        /* ... other styles ... */
+        .black-header {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
 
+        .nav-link {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            width: 100%;
+        }
+
+        .footer {
+            background-color: black;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .section {
+            padding: 20px;
+            opacity: 0; /* Initially hide sections */
+            transition: opacity 0.5s ease;
+        }
+
+        /* Style for the modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        /* Style for the modal content */
+        .modal-content {
+            background-color: #fefefe;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        /* Style for the close button */
+        .close {
+            font-size: 20px;
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        /* Hover effect for the close button */
+        .close:hover {
+            color: #fff;
+        }
+
+        /* Adding a subtle animation effect */
+        .modal-content {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        /* Keyframes for the animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <div class="black-header">
-        <a href="#home" class="nav-link">HOME</a>
-        <a href="#sayhello" class="nav-link">SAY HELLO</a>
-        <a href="#gradecomputation" class="nav-link">GRADE COMPUTATION</a>
-        <a href="#conversion" class="nav-link">UNIT CONVERSION PROGRAM</a>
-        <a href="#naturalnumberoperations" class="nav-link">NATURAL NUMBER OPERATIONS</a>
-        <a href="#incometaxcalculator" class="nav-link">INCOME TAX CALCULATOR</a>
-        <a href="#simplepayroll" class="nav-link">SIMPLE PAYROLL</a>
+        <a class="nav-link" onclick="navigateTo('home')">HOME</a>
+        <a class="nav-link" onclick="navigateTo('sayhello')">SAY HELLO</a>
+        <a class="nav-link" onclick="navigateTo('gradecomputation')">GRADE COMPUTATION</a>
+        <a class="nav-link" onclick="navigateTo('conversion')">UNIT CONVERSION PROGRAM</a>
+        <a class="nav-link" onclick="navigateTo('naturalnumberoperations')">NATURAL NUMBER OPERATIONS</a>
+        <a class="nav-link" onclick="navigateTo('incometaxcalculator')">INCOME TAX CALCULATOR</a>
+        <a class="nav-link" onclick="navigateTo('simplepayroll')">SIMPLE PAYROLL</a>
     </div>
 
-    <section id="home">
+    <div id="home" class="section">
         <h2>Welcome to The Home Page!</h2>
-
         <button onclick="openModal('welcomeModal')">What is this Menu for?</button>
-    </section>
+    </div>
 
-    <!-- Other sections with respective IDs -->
+    <!-- Add similar sections for other pages -->
+
+    <dialog id="welcomeModal" class="modal">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <span class="close" onclick="closeModal('welcomeModal')">&times;</span>
+            <p>The menu is the home base for all four of the required assignment programs...
+
+                If you wish to access these programs, click on one of the four options located on the header.
+
+                If you would like to know a little about what these websites will do, feel free to click on the Learn
+                About options.
+            </p>
+        </div>
+    </dialog>
 
     <div class="footer">
         Created By: Desiree S. Dagondon Comsci-1B CS-1130
@@ -49,38 +158,40 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const sections = document.querySelectorAll('section');
+            const sections = document.querySelectorAll('.section');
             const navLinks = document.querySelectorAll('.nav-link');
+            const homeSection = document.getElementById('home');
 
-            window.addEventListener('scroll', function () {
-                let currentSection = '';
+            // Initially show the home section
+            homeSection.style.opacity = 1;
 
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-
-                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').slice(1) === currentSection) {
-                        link.classList.add('active');
-                    }
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    const targetSectionId = this.textContent.toLowerCase();
+                    navigateTo(targetSectionId);
                 });
             });
         });
 
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.style.display = 'flex';
-        }
+        function navigateTo(sectionId) {
+            const currentSection = document.querySelector('.section[style*="opacity: 1"]');
+            const targetSection = document.getElementById(sectionId);
 
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.style.display = 'none';
+            if (currentSection) {
+                currentSection.style.opacity = 0;
+                setTimeout(() => {
+                    currentSection.style.display = 'none';
+                    targetSection.style.display = 'block';
+                    setTimeout(() => {
+                        targetSection.style.opacity = 1;
+                    }, 10);
+                }, 500);
+            } else {
+                targetSection.style.display = 'block';
+                setTimeout(() => {
+                    targetSection.style.opacity = 1;
+                }, 10);
+            }
         }
     </script>
 
