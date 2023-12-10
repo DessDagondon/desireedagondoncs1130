@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fadee3;
+      background-color: #FFD4E5; /* Light pink background */
     }
 
     .pink-header {
@@ -27,9 +27,9 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: white;
+      background-color: #fff;
       padding: 20px;
-      border-radius: 5px;
+      border-radius: 10px;
       z-index: 1;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       animation: pulsateModal 1.5s ease infinite alternate; /* Continuous pulsating effect */
@@ -61,27 +61,29 @@
       display: block;
       margin-bottom: 10px;
       font-weight: bold;
+      color: #FF4081; /* Pink label text */
     }
 
     input {
-      padding: 15px; /* Increased padding for better aesthetics */
-      margin-bottom: 15px; /* Reduced margin for a more compact form */
-      width: calc(50% - 15px); /* Adjusted width for padding */
+      padding: 15px;
+      margin-bottom: 20px; /* Increased margin for better spacing */
+      width: calc(50% - 15px);
       box-sizing: border-box;
-      border: 1px solid #ccc;
+      border: 1px solid #FF4081; /* Pink border */
       border-radius: 5px;
       font-size: 16px;
+      color: #333; /* Dark text color */
     }
 
     button {
       background-color: #FF4081;
       color: white;
-      padding: 15px; /* Increased padding for better aesthetics */
+      padding: 15px;
       border: none;
       cursor: pointer;
       transition: background-color 0.3s ease;
       border-radius: 5px;
-      width: calc(50% - 15px); /* Adjusted width for padding */
+      width: calc(50% - 15px);
       box-sizing: border-box;
       font-size: 16px;
     }
@@ -135,6 +137,7 @@
   <input type="number" id="incomeInput" placeholder="Enter taxable income">
   <button onclick="calculateIncomeTax()">Calculate Income Tax</button>
 
+  <!-- Modal for displaying income tax result -->
   <div id="resultIncomeTaxModal" class="modal">
     <!-- Close button (X) is added dynamically -->
     <span class="close" onclick="closeModal('resultIncomeTaxModal')">&times;</span>
