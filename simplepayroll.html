@@ -9,26 +9,27 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #BBDEFB;
+            background-color: #E3F2FD; /* Light blue background */
         }
 
         .blue-header {
-            background-color: #0f0fdb;
+            background-color: #1565C0; /* Dark blue header */
             color: white;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             line-height: 30px;
-            margin-bottom: 10px;
+            margin-bottom: 20px; /* Increased margin for better spacing */
         }
 
         table {
             border-collapse: collapse;
             width: 100%;
+            margin-bottom: 20px; /* Increased margin for better spacing */
         }
 
         th, td {
-            border: 1px solid black;
-            padding: 8px;
+            border: 1px solid #1565C0; /* Dark blue border */
+            padding: 10px; /* Reduced padding for a more compact table */
             text-align: left;
         }
 
@@ -43,6 +44,7 @@
             padding: 20px;
             border-radius: 5px;
             z-index: 1;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
         }
 
         /* Style for the close button */
@@ -51,6 +53,27 @@
             position: absolute;
             top: 10px;
             right: 10px;
+            font-size: 20px;
+            color: #1565C0; /* Dark blue close button */
+        }
+
+        /* Adjusted button styles for better consistency */
+        button {
+            background-color: #1565C0;
+            color: white;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 10px; /* Increased margin for better spacing */
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0D47A1; /* Darker blue on hover */
         }
     </style>
     <script>
@@ -150,4 +173,3 @@
 </body>
 
 </html>
-
