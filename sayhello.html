@@ -1,56 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Say Hello</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #FFF9C4
-    }
+    <meta charset="utf-8">
+    <title>Say Hello</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #FFF9C4;
+        }
 
-    .muted-yellow-header {
-      background-color: #f8f87c;
-      text-align: center;
-      padding: 10px;
-      margin-bottom: 20px;
-      color: white; 
-    }
+        .muted-yellow-header {
+            background-color: #FBC02D; /* Muted yellow header */
+            text-align: center;
+            padding: 15px; /* Increased padding for better appearance */
+            margin-bottom: 20px;
+            color: #424242; /* Dark gray text color */
+        }
 
-    .content {
-      text-align: left;
-      margin: 0 20px;
-    }
-  </style>
+        /* Added container for better content alignment */
+        .container {
+            text-align: center;
+            margin: 0 auto;
+            max-width: 600px; /* Adjusted max-width for better readability */
+        }
+
+        label {
+            display: block;
+            margin: 15px 0; /* Increased margin for better spacing */
+            font-weight: bold;
+            color: #616161; /* Medium gray text color */
+        }
+
+        input {
+            padding: 10px;
+            width: calc(100% - 20px); /* Adjusted width for padding */
+            box-sizing: border-box;
+            border: 1px solid #BDBDBD; /* Light gray border */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #FBC02D;
+            color: white;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            width: calc(100% - 20px); /* Adjusted width for padding */
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #FFD54F; /* Lighter yellow on hover */
+        }
+
+        h2 {
+            margin-top: 20px; /* Increased margin for better spacing */
+            color: #424242; /* Dark gray text color */
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- Muted yellow header -->
-  <div class="muted-yellow-header">
-    <h1>SAY HELLO PAGE</h1>
-    <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
-  </div>
+    <div class="muted-yellow-header">
+        <h1>SAY HELLO PAGE</h1>
+        <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
+    </div>
 
+    <!-- Content container -->
+    <div class="container">
+        <label for="fname">What Is Your name?</label>
+        <input id="fname" type="text">
+        <button onclick="sayhello()">Say Hello</button>
+        <br><br>
+        <h2 id="hellomsg"></h2>
+    </div>
 
-  <div class="content">
-    <label for="fname">What Is Your name?</label>
-    <input id="fname" type="text">
-    <button onclick="sayhello()">Say Hello</button>
-    <br><br>
-    <h2 id="hellomsg"></h2>
-    <br>
-
-  <script>
-    function sayhello() {
-      var uname;
-      uname = document.getElementById("fname").value;
-      document.getElementById("hellomsg").innerHTML = 'Hello ' + uname;
-    }
-  </script>
+    <script>
+        function sayhello() {
+            var uname = document.getElementById("fname").value;
+            document.getElementById("hellomsg").innerHTML = 'Hello ' + uname;
+        }
+    </script>
 
 </body>
 
