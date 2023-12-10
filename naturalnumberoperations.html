@@ -9,8 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #E1BEE7;
-      transition: background-color 0.5s ease; /* Smooth background color transition */
+       background-color: #E1BEE7; 
     }
 
     .purple-header {
@@ -19,40 +18,9 @@
       text-align: center;
       padding: 10px;
       margin-bottom: 10px;
-      transition: background-color 0.5s ease; /* Smooth background color transition */
     }
 
-    .purple-header a {
-      color: white;
-      text-decoration: none;
-      transition: color 0.5s ease; /* Smooth text color transition */
-    }
-
-    .purple-header a:hover {
-      color: #FFEB3B; /* Change color on hover */
-    }
-
-    .operation-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-      transition: margin-top 0.5s ease; /* Smooth margin-top transition */
-    }
-
-    select, input, button {
-      margin: 10px;
-      padding: 8px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      transition: all 0.3s ease; /* Smooth transition for select, input, and button */
-    }
-
-    select:hover, input:hover, button:hover {
-      border-color: purple; /* Change border color on hover */
-    }
-
+    /* Added style for the modal */
     .modal {
       display: none;
       position: fixed;
@@ -63,10 +31,10 @@
       padding: 20px;
       border-radius: 5px;
       z-index: 1;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.5s ease; /* Smooth background color transition */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Adding a subtle box shadow */
     }
 
+    /* Style for the close button */
     .close {
       cursor: pointer;
       position: absolute;
@@ -74,31 +42,20 @@
       right: 10px;
     }
 
+    /* Adjusted the margin-top to bring the result closer to the input */
     #resultModal {
       margin-top: 10px;
-      transition: margin-top 0.5s ease; /* Smooth margin-top transition */
-    }
-
-    /* Animation for modal */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    /* Apply animation to modal */
-    .modal.show {
-      animation: fadeIn 0.5s ease;
     }
   </style>
   <script>
+    
     function performOperation() {
       var operationType = document.getElementById("operationType").value;
       var n = parseInt(document.getElementById("inputValue").value);
       var result;
+
+      // Close the existing result modal
+      closeModal("resultModal");
 
       switch (operationType) {
         case "factorial":
@@ -167,27 +124,26 @@
   </script>
 </head>
 
-<body>
-
+<!-- Purple header with link to home -->
   <div class="purple-header">
     <h1>Natural Number Operations</h1>
-    <p><a href="index.html">Home</a></p>
+    <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
   </div>
 
-  <div class="operation-container">
-    <h2>Select Operation:</h2>
-    <select id="operationType">
-      <option value="factorial">Factorial</option>
-      <option value="sum">Sum</option>
-      <option value="average">Average</option>
-    </select>
+  <h2>Select Operation:</h2>
+  <select id="operationType">
+    <option value="factorial">Factorial</option>
+    <option value="sum">Sum</option>
+    <option value="average">Average</option>
+  </select>
 
-    <h2>Enter N:</h2>
-    <input type="number" id="inputValue">
-    <button onclick="performOperation()">Calculate</button>
-  </div>
+  <h2>Enter N:</h2>
+  <input type="number" id="inputValue">
+  <button onclick="performOperation()">Calculate</button>
 
+  <!-- Modal for displaying result -->
   <dialog id="resultModal" class="modal">
+    <!-- Close button (X) is added dynamically -->
     <p id="result"></p>
   </dialog>
 
