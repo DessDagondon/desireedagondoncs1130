@@ -5,13 +5,84 @@
   <title>Natural Number Operations</title>
   <meta charset="UTF-8">
   <style>
-    /* ... (unchanged styles) ... */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #E1BEE7;
+      animation: fadeInBackground 1s ease; /* Added background animation */
+    }
+
+    @keyframes fadeInBackground {
+      from {
+        background-color: #fff; /* Change to the desired background color */
+      }
+      to {
+        background-color: #E1BEE7;
+      }
+    }
+
+    .purple-header {
+      background-color: purple;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      z-index: 1;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      animation: fadeInModal 0.5s ease; /* Added fade-in animation */
+    }
+
+    @keyframes fadeInModal {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .close {
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    #resultModal {
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: purple;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease; /* Added button transition */
+    }
+
+    button:hover {
+      background-color: #6A1B9A;
+    }
+
+    input {
+      padding: 8px;
+    }
   </style>
   <script>
     function performOperation() {
-      // Close the existing result modal
-      closeModal("resultModal");
-
       var operationType = document.getElementById("operationType").value;
       var n = parseInt(document.getElementById("inputValue").value);
       var result;
@@ -69,16 +140,16 @@
     }
 
     function displayModal(modalId, message) {
-      var modal = document.getElementById(modalId);
-      modal.innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
-      modal.style.display = 'block';
-      modal.classList.add('show'); // Add the 'show' class to trigger the fadeIn animation
+      document.getElementById(modalId).innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
+      document.getElementById(modalId).style.display = 'block';
     }
 
     function closeModal(modalId) {
-      var modal = document.getElementById(modalId);
-      modal.style.display = 'none';
-      modal.classList.remove('show'); // Remove the 'show' class
+      document.getElementById(modalId).style.animation = 'fadeOutModal 0.5s ease'; /* Added fade-out animation */
+      setTimeout(function () {
+        document.getElementById(modalId).style.display = 'none';
+        document.getElementById(modalId).style.animation = '';
+      }, 500);
     }
   </script>
 </head>
@@ -87,21 +158,19 @@
 
   <div class="purple-header">
     <h1>Natural Number Operations</h1>
-    <p><a href="index.html">Home</a></p>
+    <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
   </div>
 
-  <div class="operation-container">
-    <h2>Select Operation:</h2>
-    <select id="operationType">
-      <option value="factorial">Factorial</option>
-      <option value="sum">Sum</option>
-      <option value="average">Average</option>
-    </select>
+  <h2>Select Operation:</h2>
+  <select id="operationType">
+    <option value="factorial">Factorial</option>
+    <option value="sum">Sum</option>
+    <option value="average">Average</option>
+  </select>
 
-    <h2>Enter N:</h2>
-    <input type="number" id="inputValue">
-    <button onclick="performOperation()">Calculate</button>
-  </div>
+  <h2>Enter N:</h2>
+  <input type="number" id="inputValue">
+  <button onclick="performOperation()">Calculate</button>
 
   <dialog id="resultModal" class="modal">
     <p id="result"></p>
@@ -110,3 +179,4 @@
 </body>
 
 </html>
+
