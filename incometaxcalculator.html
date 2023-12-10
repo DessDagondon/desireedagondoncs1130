@@ -1,27 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Income Tax Calculator</title>
   <meta charset="UTF-8">
+  <title>Income Tax Calculator</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #fadee3;
     }
 
     .pink-header {
-      background-color: Pink;
+      background-color: #FF4081;
       color: white;
       text-align: center;
-      padding: 10px;
+      padding: 20px;
       line-height: 30px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
-    /* Added style for the modal with pulsating effect */
     .modal {
       display: none;
       position: fixed;
@@ -32,6 +31,7 @@
       padding: 20px;
       border-radius: 5px;
       z-index: 1;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       animation: pulsateModal 1.5s ease infinite alternate; /* Continuous pulsating effect */
     }
 
@@ -44,12 +44,46 @@
       }
     }
 
-    /* Style for the close button */
     .close {
       cursor: pointer;
       position: absolute;
       top: 10px;
       right: 10px;
+      font-size: 20px;
+      color: #FF4081;
+    }
+
+    #resultIncomeTaxModal {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input {
+      padding: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #FF4081;
+      color: white;
+      padding: 12px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button:hover {
+      background-color: #F50057;
     }
   </style>
   <script>
@@ -71,16 +105,15 @@
         incomeTax = 2410000 + 0.35 * (taxableIncome - 8000000);
       }
 
-      displayModal("resultIncomeTaxModal", "Income Tax: " + incomeTax.toFixed(2));
+      displayModal("resultIncomeTaxModal", "Income Tax: $" + incomeTax.toFixed(2));
     }
 
-    // Display the modal with the given message
     function displayModal(modalId, message) {
-      document.getElementById(modalId).innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
-      document.getElementById(modalId).style.display = 'block';
+      var modal = document.getElementById(modalId);
+      modal.innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
+      modal.style.display = 'block';
     }
 
-    // Close the modal
     function closeModal(modalId) {
       document.getElementById(modalId).style.display = 'none';
     }
@@ -89,22 +122,19 @@
 
 <body>
 
-  <!-- Pink header with link to home -->
   <div class="pink-header">
     <h1>Income Tax Calculator</h1>
     <p><a href="index.html" style="color: white; text-decoration: none;">Home</a></p>
   </div>
 
   <label for="incomeInput">Enter Taxable Income:</label>
-  <input type="number" id="incomeInput">
+  <input type="number" id="incomeInput" placeholder="Enter taxable income">
   <button onclick="calculateIncomeTax()">Calculate Income Tax</button>
 
-  <!-- Modal for displaying income tax calculation result -->
-  <dialog id="resultIncomeTaxModal" class="modal">
+  <div id="resultIncomeTaxModal" class="modal">
     <!-- Close button (X) is added dynamically -->
     <span class="close" onclick="closeModal('resultIncomeTaxModal')">&times;</span>
-    <p id="resultIncomeTax"></p>
-  </dialog>
+  </div>
 
 </body>
 
