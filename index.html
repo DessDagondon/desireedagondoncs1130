@@ -1,7 +1,3 @@
-
-I apologize for the confusion. If you want to apply a transition effect to the entire page background, you can modify the CSS for the `body` element. Here's the updated code:
-
-```html
 <!DOCTYPE html>
 <html>
 
@@ -15,7 +11,6 @@ I apologize for the confusion. If you want to apply a transition effect to the e
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #BDBDBD;
-            transition: background-color 0.5s ease; /* Transition for background color */
         }
 
         .black-header {
@@ -59,21 +54,70 @@ I apologize for the confusion. If you want to apply a transition effect to the e
             width: 100%;
         }
 
+        /* Style for the modal */
         .modal {
             display: none;
-        }
-
-        .modal-content {
-            background-color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
             padding: 20px;
-            border-radius: 5px;
+            border-radius: 10px;
+            z-index: 1;
         }
 
+        /* Style for the modal content */
+        .modal-content {
+            background-color: #fefefe; /* White background */
+            color: #333; /* Dark text color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
+            animation: fadeIn 0.3s ease-in-out; /* Fade-in animation */
+        }
+
+        /* Style for the close button */
         .close {
+            font-size: 20px;
+            color: #aaa; /* Lighter color for close button */
             position: absolute;
             top: 10px;
             right: 10px;
             cursor: pointer;
+        }
+
+        /* Hover effect for the close button */
+        .close:hover {
+            color: #fff; /* Change color on hover */
+        }
+
+        /* Adding a subtle animation effect */
+        .modal-content {
+            animation: fadeIn 0.3s ease-in-out; /* Fade-in animation */
+        }
+
+        /* Keyframes for the animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        body.show-content h2 {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -175,6 +219,8 @@ I apologize for the confusion. If you want to apply a transition effect to the e
                         link.classList.add('active');
                     }
                 });
+
+                document.body.classList.toggle('show-content', currentSection !== '');
             });
         });
 
@@ -192,6 +238,4 @@ I apologize for the confusion. If you want to apply a transition effect to the e
 </body>
 
 </html>
-```
 
-This will apply a smooth transition to the background color of the entire page.
