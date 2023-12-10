@@ -88,74 +88,42 @@
       }
     }
   </style>
-  <script>
-    function performOperation() {
-      var operationType = document.getElementById("operationType").value;
-      var n = parseInt(document.getElementById("inputValue").value);
-      var result;
+  <<script>
+  function performOperation() {
+    var operationType = document.getElementById("operationType").value;
+    var n = parseInt(document.getElementById("inputValue").value);
+    var result;
 
-      switch (operationType) {
-        case "factorial":
-          result = calculateFactorial(n);
-          displayModal("resultModal", "Factorial: " + result);
-          break;
-        case "sum":
-          result = calculateSum(n);
-          displayModal("resultModal", "Sum: " + result);
-          break;
-        case "average":
-          result = calculateAverage(n);
-          displayModal("resultModal", "Average: " + result.toFixed(2));
-          break;
-        default:
-          alert("Invalid operation type");
-      }
+    switch (operationType) {
+      case "factorial":
+        result = calculateFactorial(n);
+        displayModal("resultModal", "Factorial: " + result);
+        break;
+      case "sum":
+        result = calculateSum(n);
+        displayModal("resultModal", "Sum: " + result, "slideInDown");
+        break;
+      case "average":
+        result = calculateAverage(n);
+        displayModal("resultModal", "Average: " + result.toFixed(2), "zoomIn");
+        break;
+      default:
+        alert("Invalid operation type");
     }
+  }
 
-    function calculateFactorial(n) {
-      var factorial = 1;
-      var i = 1;
+  function displayModal(modalId, message, animation) {
+    var modal = document.getElementById(modalId);
+    modal.innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
+    modal.style.display = 'block';
 
-      while (i <= n) {
-        factorial *= i;
-        i++;
-      }
-
-      return factorial;
+    if (animation) {
+      modal.style.animation = animation + ' 0.5s';
+      modal.addEventListener('animationend', function () {
+        modal.style.animation = ''; // Reset the animation to allow replay
+      });
     }
-
-    function calculateSum(n) {
-      var sum = 0;
-      var i = 1;
-
-      do {
-        sum += i;
-        i++;
-      } while (i <= n);
-
-      return sum;
-    }
-
-    function calculateAverage(n) {
-      var sum = 0;
-
-      for (var i = 1; i <= n; i++) {
-        sum += i;
-      }
-
-      return sum / n;
-    }
-
-    // Display the modal with the given message
-    function displayModal(modalId, message) {
-      document.getElementById(modalId).innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
-      document.getElementById(modalId).style.display = 'block';
-    }
-
-    // Close the modal
-    function closeModal(modalId) {
-      document.getElementById(modalId).style.display = 'none';
-    }
+  }
   </script>
 </head>
 
