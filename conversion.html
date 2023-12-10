@@ -19,38 +19,15 @@
       padding: 20px;
     }
 
-    /* Added style for the modal with pulsating effect */
-    .modal {
+    /* Style for the result section */
+    #resultSection {
       display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #ffffff; /* White modal background */
-      padding: 30px;
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #ffffff; /* White background */
       border-radius: 10px;
-      z-index: 1;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-      animation: pulsateModal 1.5s ease infinite alternate; /* Continuous pulsating effect */
-    }
-
-    @keyframes pulsateModal {
-      from {
-        transform: scale(1);
-      }
-      to {
-        transform: scale(1.1);
-      }
-    }
-
-    /* Style for the close button */
-    .close {
-      cursor: pointer;
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 20px;
-      color: #555;
     }
 
     /* Style for the conversion form */
@@ -82,6 +59,18 @@
     button:hover {
       background-color: #c62828; /* Darker red on hover */
     }
+
+    /* Style for the result text */
+    #resultText {
+      font-size: 18px;
+      color: #333;
+    }
+
+    #resultValue {
+      font-size: 24px;
+      font-weight: bold;
+      color: #e53935; /* Dark red */
+    }
   </style>
   <script>
     function convertUnits() {
@@ -92,34 +81,30 @@
       switch (conversionType) {
         case "celsiusToFahrenheit":
           result = (inputValue * 9 / 5) + 32;
-          displayModal("resultModal", "Celsius to Fahrenheit: " + result.toFixed(2) + " °F");
+          displayResult("Celsius to Fahrenheit", result.toFixed(2) + " °F");
           break;
         case "fahrenheitToCelsius":
           result = (inputValue - 32) * 5 / 9;
-          displayModal("resultModal", "Fahrenheit to Celsius: " + result.toFixed(2) + " °C");
+          displayResult("Fahrenheit to Celsius", result.toFixed(2) + " °C");
           break;
         case "metersToFeet":
           result = inputValue * 3.28084;
-          displayModal("resultModal", "Meters to Feet: " + result.toFixed(2) + " feet");
+          displayResult("Meters to Feet", result.toFixed(2) + " feet");
           break;
         case "feetToMeters":
           result = inputValue / 3.28084;
-          displayModal("resultModal", "Feet to Meters: " + result.toFixed(2) + " meters");
+          displayResult("Feet to Meters", result.toFixed(2) + " meters");
           break;
         default:
           alert("Invalid conversion type");
       }
     }
 
-    // Display the modal with the given message
-    function displayModal(modalId, message) {
-      document.getElementById(modalId).innerHTML = '<span class="close" onclick="closeModal(\'' + modalId + '\')">&times;</span>' + message;
-      document.getElementById(modalId).style.display = 'block';
-    }
-
-    // Close the modal
-    function closeModal(modalId) {
-      document.getElementById(modalId).style.display = 'none';
+    // Display the result section with the given values
+    function displayResult(conversionType, result) {
+      document.getElementById("resultText").innerText = conversionType + " Conversion Result:";
+      document.getElementById("resultValue").innerText = result;
+      document.getElementById("resultSection").style.display = 'block';
     }
   </script>
 </head>
@@ -147,11 +132,11 @@
     <button onclick="convertUnits()">Convert</button>
   </div>
 
-  <!-- Modal for displaying conversion result -->
-  <dialog id="resultModal" class="modal">
-    <!-- Close button (X) is added dynamically -->
-    <span class="close" onclick="closeModal('resultModal')">&times;</span>
-    <p id="result"></p>
-  </dialog>
+  <!-- Result section -->
+  <div id="resultSection">
+    <p id="resultText"></p>
+    <p id="resultValue"></p>
+  </div>
 
 </body>
+</html>
