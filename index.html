@@ -11,7 +11,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #BDBDBD;
-            transition: background-color 0.5s ease; /* Added transition for background color change */
+            transition: background-color 0.5s ease;
         }
 
         .black-header {
@@ -19,7 +19,7 @@
             color: white;
             padding: 10px;
             text-align: center;
-            transition: background-color 0.5s ease; /* Added transition for background color change */
+            transition: background-color 0.5s ease;
         }
 
         .nav-link {
@@ -28,7 +28,7 @@
             text-decoration: none;
             position: relative;
             display: inline-block;
-            transition: color 0.3s ease; /* Added transition for text color change */
+            transition: color 0.3s ease;
         }
 
         .nav-link::before {
@@ -48,11 +48,11 @@
         }
 
         .nav-link:hover {
-            color: #BDBDBD; /* Change text color on hover */
+            color: #BDBDBD;
         }
 
         .nav-link.active {
-            color: #BDBDBD; /* Change text color for active link */
+            color: #BDBDBD;
         }
 
         .footer {
@@ -65,58 +65,52 @@
             width: 100%;
         }
 
-        /* Style for the modal */
         .modal {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            /* Semi-transparent black background */
-            padding: 20px;
-            border-radius: 10px;
             z-index: 1;
         }
 
-        /* Style for the modal content */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            z-index: 0;
+        }
+
         .modal-content {
             background-color: #fefefe;
-            /* White background */
             color: #333;
-            /* Dark text color */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            /* Box shadow for depth */
             animation: fadeIn 0.3s ease-in-out;
-            /* Fade-in animation */
+            z-index: 1;
         }
 
-        /* Style for the close button */
         .close {
             font-size: 20px;
             color: #aaa;
-            /* Lighter color for close button */
             position: absolute;
             top: 10px;
             right: 10px;
             cursor: pointer;
         }
 
-        /* Hover effect for the close button */
         .close:hover {
             color: #fff;
-            /* Change color on hover */
         }
 
-        /* Adding a subtle animation effect */
         .modal-content {
             animation: fadeIn 0.3s ease-in-out;
-            /* Fade-in animation */
         }
 
-        /* Keyframes for the animation */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -134,21 +128,22 @@
 <body>
 
     <div class="black-header">
-        <a href="index.html" class="nav-link">HOME</a>
-        <a href="sayhello.html" class="nav-link">SAY HELLO</a>
-        <a href="gradecomputation.html" class="nav-link">GRADE COMPUTATION</a>
-        <a href="conversion.html" class="nav-link">UNIT CONVERSION PROGRAM</a>
-        <a href="naturalnumberoperations.html" class="nav-link">NATURAL NUMBER OPERATIONS</a>
-        <a href="incometaxcalculator.html" class="nav-link">INCOME TAX CALCULATOR</a>
-        <a href="simplepayroll.html" class="nav-link">SIMPLE PAYROLL</a>
+        <a href="#home" class="nav-link">HOME</a>
+        <a href="#sayhello" class="nav-link">SAY HELLO</a>
+        <a href="#gradecomputation" class="nav-link">GRADE COMPUTATION</a>
+        <a href="#conversion" class="nav-link">UNIT CONVERSION PROGRAM</a>
+        <a href="#naturalnumberoperations" class="nav-link">NATURAL NUMBER OPERATIONS</a>
+        <a href="#incometaxcalculator" class="nav-link">INCOME TAX CALCULATOR</a>
+        <a href="#simplepayroll" class="nav-link">SIMPLE PAYROLL</a>
     </div>
 
     <h2>Welcome to The Home Page!</h2>
 
     <button onclick="openModal('welcomeModal')">What is this Menu for?</button>
 
-    <dialog id="welcomeModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+    <div id="welcomeModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal('welcomeModal')"></div>
+        <div class="modal-content">
             <span class="close" onclick="closeModal('welcomeModal')">&times;</span>
             <p>The menu is the home base for all four of the required assignment programs...
 
@@ -158,46 +153,50 @@
                 About options.
             </p>
         </div>
-    </dialog>
+    </div>
 
     <button onclick="openModal('conversionInfoModal')">Learn about Assignment #1: Unit Conversion Program</button>
 
-    <dialog id="conversionInfoModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+    <div id="conversionInfoModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal('conversionInfoModal')"></div>
+        <div class="modal-content">
             <span class="close" onclick="closeModal('conversionInfoModal')">&times;</span>
             <p>This program will convert values from one unit to another.</p>
         </div>
-    </dialog>
+    </div>
 
     <button onclick="openModal('incomeTaxCalculatorModal')">Learn about Assignment #2: Income Tax Calculator
         Program</button>
 
-    <dialog id="incomeTaxCalculatorModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+    <div id="incomeTaxCalculatorModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal('incomeTaxCalculatorModal')"></div>
+        <div class="modal-content">
             <span class="close" onclick="closeModal('incomeTaxCalculatorModal')">&times;</span>
             <p>This program calculates the income tax owed based on the user-provided income and relevant tax rules.
             </p>
         </div>
-    </dialog>
+    </div>
 
     <button onclick="openModal('naturalNumberInfoModal')">Learn about Assignment #3: Natural Number Operations
         Program</button>
 
-    <dialog id="naturalNumberInfoModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+    <div id="naturalNumberInfoModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal('naturalNumberInfoModal')"></div>
+        <div class="modal-content">
             <span class="close" onclick="closeModal('naturalNumberInfoModal')">&times;</span>
             <p>This program will perform various operations on natural numbers.</p>
         </div>
-    </dialog>
+    </div>
 
     <button onclick="openModal('simplePayrollModal')">Learn about Assignment #4: Simple Payroll Program</button>
 
-    <dialog id="simplePayrollModal" class="modal">
-        <div class="modal-content" onclick="event.stopPropagation();">
+    <div id="simplePayrollModal" class="modal">
+        <div class="modal-overlay" onclick="closeModal('simplePayrollModal')"></div>
+        <div class="modal-content">
             <span class="close" onclick="closeModal('simplePayrollModal')">&times;</span>
             <p>This program handles basic payroll calculations based on given input.</p>
         </div>
-    </dialog>
+    </div>
 
     <div class="footer">
         Created By: Desiree S. Dagondon Comsci-1B CS-1130
@@ -246,7 +245,7 @@
 
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
-            modal.style.display = 'flex';
+            modal.style.display = 'block';
         }
 
         function closeModal(modalId) {
