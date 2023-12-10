@@ -1,3 +1,6 @@
+Yes, you can add an animation when switching to a program within the website. One common approach is to use CSS transitions or animations. Here's an example modification to your code with a fade-in animation when switching between programs:
+
+```html
 <!DOCTYPE html>
 <html>
 
@@ -11,6 +14,7 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #BDBDBD;
+            transition: background-color 0.5s ease; /* Add transition for background color */
         }
 
         .black-header {
@@ -187,7 +191,9 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const sections = document.querySelectorAll('section');
+            const sections
+
+ = document.querySelectorAll('section');
             const navLinks = document.querySelectorAll('.nav-link');
 
             window.addEventListener('scroll', function () {
@@ -225,4 +231,6 @@
 </body>
 
 </html>
+```
 
+In this modification, I added a transition for the background color of the body element, which creates a smooth color change effect. Additionally, I included a fade-in animation for the modal content. You can adjust the animation duration and easing function according to your preference.
